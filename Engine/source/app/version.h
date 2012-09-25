@@ -23,6 +23,8 @@
 #ifndef _VERSION_H_
 #define _VERSION_H_
 
+#include "platform/types.h"
+
 /// This is our global version number for the engine source code that
 /// we are using. See <game>/source/torqueConfig.h for the game's source
 /// code version, the game name, and which type of game it is (TGB, TGE, TGEA, etc.).

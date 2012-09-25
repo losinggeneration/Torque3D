@@ -27,6 +27,10 @@
 #include "core/util/tVector.h"
 #endif
 
+#include "math/mPoint3.h"
+#include "math/mPlane.h"
+#include "collision/collision.h"
+
 
 //----------------------------------------------------------------------------
 

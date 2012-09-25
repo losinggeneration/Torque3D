@@ -30,6 +30,7 @@
 #ifndef _SIMOBJECT_H_
 #include "console/simObject.h"
 #endif
+#include "component/simpleComponent.h"
 
 #include "core/util/safeDelete.h"
 
