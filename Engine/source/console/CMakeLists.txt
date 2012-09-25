@@ -1,0 +1,115 @@
+set(TORQUE_CONSOLE_SRCS
+	CMDscan.cpp
+	SimXMLDocument.cpp
+	arrayObject.cpp
+	astAlloc.cpp
+	astNodes.cpp
+	cmdgram.cpp
+	codeBlock.cpp
+	compiledEval.cpp
+	compiler.cpp
+	console.cpp
+	consoleDoc.cpp
+	consoleFunctions.cpp
+	consoleInternal.cpp
+	consoleLogger.cpp
+	consoleObject.cpp
+	consoleParser.cpp
+	consoleTypes.cpp
+	consoleXMLExport.cpp
+	debugOutputConsumer.cpp
+	dynamicTypes.cpp
+	engineDoc.cpp
+	engineExports.cpp
+	engineFunctions.cpp
+	engineObject.cpp
+	enginePrimitives.cpp
+	engineStructs.cpp
+	engineTypeInfo.cpp
+	engineTypes.cpp
+	engineXMLExport.cpp
+	fieldBrushObject.cpp
+	fileSystemFunctions.cpp
+### FIXME: Figure out why this doesn't work
+	#persistenceManager.cpp
+	propertyParsing.cpp
+	runtimeClassRep.cpp
+	scriptFilename.cpp
+	scriptObjects.cpp
+	sim.cpp
+	simDatablock.cpp
+	simDictionary.cpp
+	simEvents.cpp
+	simFieldDictionary.cpp
+	simManager.cpp
+	simObject.cpp
+	simObjectList.cpp
+	simObjectMemento.cpp
+	simPersistID.cpp
+	simPersistSet.cpp
+	simSerialize.cpp
+	simSet.cpp
+	stringStack.cpp
+	telnetConsole.cpp
+	telnetDebugger.cpp
+	typeValidators.cpp
+)
+
+set(TORQUE_CONSOLE_HEADERS
+	ICallMethod.h
+	SimXMLDocument.h
+	arrayObject.h
+	ast.h
+	cmdgram.h
+	codeBlock.h
+	compiler.h
+	console.h
+	consoleDoc.h
+	consoleInternal.h
+	consoleLogger.h
+	consoleObject.h
+	consoleParser.h
+	consoleTypes.h
+	consoleXMLExport.h
+	debugOutputConsumer.h
+	dynamicTypes.h
+	engineAPI.h
+	engineExports.h
+	engineFunctions.h
+	engineObject.h
+	enginePrimitives.h
+	engineStructs.h
+	engineTypeInfo.h
+	engineTypes.h
+	fieldBrushObject.h
+	persistenceManager.h
+	propertyParsing.h
+	runtimeClassRep.h
+	scriptFilename.h
+	scriptObjects.h
+	sim.h
+	simBase.h
+	simDatablock.h
+	simDictionary.h
+	simEvents.h
+	simFieldDictionary.h
+	simObject.h
+	simObjectList.h
+	simObjectMemento.h
+	simObjectRef.h
+	simPersistID.h
+	simPersistSet.h
+	simSet.h
+	stringStack.h
+	telnetConsole.h
+	telnetDebugger.h
+	typeValidators.h
+)
+
+include_directories(
+	${CMAKE_SOURCE_DIR}/../lib
+	${CMAKE_SOURCE_DIR}/../lib/collada/include
+	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
+)
+
+add_library(${TORQUE_BUILD}_console STATIC ${TORQUE_CONSOLE_SRCS} ${TORQUE_CONSOLE_HEADERS})
