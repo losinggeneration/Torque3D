@@ -1,0 +1,72 @@
+set(TORQUE_TS_SRCS
+	arch/tsMeshIntrinsics.sse.cpp
+	arch/tsMeshIntrinsics.sse4.cpp
+	collada/colladaAppMaterial.cpp
+	collada/colladaAppMesh.cpp
+	collada/colladaAppNode.cpp
+	collada/colladaAppSequence.cpp
+	collada/colladaExtensions.cpp
+	collada/colladaImport.cpp
+	collada/colladaLights.cpp
+	collada/colladaShapeLoader.cpp
+	collada/colladaUtils.cpp
+	instancingMatHook.cpp
+	loader/appMesh.cpp
+	loader/appNode.cpp
+	loader/tsShapeLoader.cpp
+	tsAnimate.cpp
+	tsCollision.cpp
+	tsDecal.cpp
+	tsDump.cpp
+	tsIntegerSet.cpp
+	tsLastDetail.cpp
+	tsMaterialList.cpp
+	tsMesh.cpp
+	tsMeshFit.cpp
+	tsMeshIntrinsics.cpp
+	tsPartInstance.cpp
+	tsRenderState.cpp
+	tsShape.cpp
+	tsShapeAlloc.cpp
+	tsShapeConstruct.cpp
+	tsShapeEdit.cpp
+	tsShapeInstance.cpp
+	tsShapeOldRead.cpp
+	tsSortedMesh.cpp
+	tsThread.cpp
+	tsTransform.cpp
+)
+
+set(TORQUE_TS_HEADERS
+	arch/tsMeshIntrinsics.arch.h
+	collada/colladaAppMaterial.h
+	collada/colladaAppMesh.h
+	collada/colladaAppNode.h
+	collada/colladaAppSequence.h
+	collada/colladaExtensions.h
+	collada/colladaShapeLoader.h
+	collada/colladaUtils.h
+	instancingMatHook.h
+	loader/appMaterial.h
+	loader/appMesh.h
+	loader/appNode.h
+	loader/appSequence.h
+	loader/tsShapeLoader.h
+	tsDecal.h
+	tsIntegerSet.h
+	tsLastDetail.h
+	tsMaterialList.h
+	tsMesh.h
+	tsMeshIntrinsics.h
+	tsPartInstance.h
+	tsRenderState.h
+	tsShape.h
+	tsShapeAlloc.h
+	tsShapeConstruct.h
+	tsShapeInstance.h
+	tsSortedMesh.h
+	tsTransform.h
+)
+
+add_library(${TORQUE_BUILD}_ts STATIC ${TORQUE_TS_SRCS} ${TORQUE_TS_HEADERS})
+

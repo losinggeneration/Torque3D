@@ -1,0 +1,39 @@
+set(TORQUE_ENVIRONMENT_SRCS
+	basicClouds.cpp
+	cloudLayer.cpp
+	decalRoad.cpp
+	editors/guiMeshRoadEditorCtrl.cpp
+	editors/guiRiverEditorCtrl.cpp
+	editors/guiRoadEditorCtrl.cpp
+	meshRoad.cpp
+	nodeListManager.cpp
+	river.cpp
+	scatterSky.cpp
+	skyBox.cpp
+	sun.cpp
+	timeOfDay.cpp
+	waterBlock.cpp
+	waterObject.cpp
+	waterPlane.cpp
+)
+
+set(TORQUE_ENVIRONMENT_HEADERS
+	basicClouds.h
+	cloudLayer.h
+	decalRoad.h
+	editors/guiMeshRoadEditorCtrl.h
+	editors/guiRiverEditorCtrl.h
+	editors/guiRoadEditorCtrl.h
+	meshRoad.h
+	nodeListManager.h
+	river.h
+	scatterSky.h
+	skyBox.h
+	sun.h
+	timeOfDay.h
+	waterBlock.h
+	waterObject.h
+	waterPlane.h
+)
+
+add_library(${TORQUE_BUILD}_enviornment STATIC ${TORQUE_ENVIRONMENT_SRCS} ${TORQUE_ENVIRONMENT_HEADERS})

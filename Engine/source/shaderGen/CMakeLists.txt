@@ -1,0 +1,60 @@
+set(TORQUE_SHADERGEN_SRCS
+	GLSL/bumpGLSL.cpp
+	GLSL/depthGLSL.cpp
+	GLSL/paraboloidGLSL.cpp
+	GLSL/pixSpecularGLSL.cpp
+	GLSL/shaderCompGLSL.cpp
+	GLSL/shaderFeatureGLSL.cpp
+	GLSL/shaderGenGLSL.cpp
+	GLSL/shaderGenGLSLInit.cpp
+	HLSL/bumpHLSL.cpp
+	HLSL/depthHLSL.cpp
+	HLSL/paraboloidHLSL.cpp
+	HLSL/pixSpecularHLSL.cpp
+	HLSL/shaderCompHLSL.cpp
+	HLSL/shaderFeatureHLSL.cpp
+	HLSL/shaderGenHLSL.cpp
+	HLSL/shaderGenHLSLInit.cpp
+	conditionerFeature.cpp
+	featureMgr.cpp
+	featureSet.cpp
+	featureType.cpp
+	langElement.cpp
+	shaderComp.cpp
+	shaderDependency.cpp
+	shaderFeature.cpp
+	shaderGen.cpp
+	shaderGenVars.cpp
+	shaderOp.cpp
+)
+
+set(TORQUE_SHADERGEN_HEADERS
+	GLSL/bumpGLSL.h
+	GLSL/depthGLSL.h
+	GLSL/paraboloidGLSL.h
+	GLSL/pixSpecularGLSL.h
+	GLSL/shaderCompGLSL.h
+	GLSL/shaderFeatureGLSL.h
+	GLSL/shaderGenGLSL.h
+	HLSL/bumpHLSL.h
+	HLSL/depthHLSL.h
+	HLSL/paraboloidHLSL.h
+	HLSL/pixSpecularHLSL.h
+	HLSL/shaderCompHLSL.h
+	HLSL/shaderFeatureHLSL.h
+	HLSL/shaderGenHLSL.h
+	conditionerFeature.h
+	featureMgr.h
+	featureSet.h
+	featureType.h
+	langElement.h
+	shaderComp.h
+	shaderDependency.h
+	shaderFeature.h
+	shaderGen.h
+	shaderGenVars.h
+	shaderOp.h
+)
+
+add_library(${TORQUE_BUILD}_shaderGen STATIC ${TORQUE_SHADERGEN_SRCS} ${TORQUE_SHADERGEN_HEADERS})
+

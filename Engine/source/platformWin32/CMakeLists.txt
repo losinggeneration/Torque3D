@@ -1,0 +1,54 @@
+set(TORQUE_PLATFORMWIN32_SRCS
+	cardProfile.cpp
+	menus/menuBarWin32.cpp
+	menus/popupMenuWin32.cpp
+	minidump/winMiniDump.cpp
+	minidump/winStackWalker.cpp
+	nativeDialogs/fileDialog.cpp
+	nativeDialogs/win32MsgBox.cpp
+	threads/mutex.cpp
+	threads/thread.cpp
+	videoInfo/wmiVideoInfo.cpp
+	winAsmBlit.cpp
+	winAsync.cpp
+	winCPUInfo.cpp
+	winConsole.cpp
+	winDInputDevice.cpp
+	winDirectInput.cpp
+	winDlibrary.cpp
+	winExec.cpp
+	winFileio.cpp
+	winFont.cpp
+	winInput.cpp
+	winMath.cpp
+	winMath_ASM.cpp
+	winMemory.cpp
+	winProcessControl.cpp
+	winRedbook.cpp
+	winSemaphore.cpp
+	winTLS.cpp
+	winTime.cpp
+	winTimer.cpp
+	winUser.cpp
+	winVFS.cpp
+	winVolume.cpp
+	winWindow.cpp
+)
+
+set(TORQUE_PLATFORMWIN32_HEADERS
+	VFSRes.h
+	minidump/winStackWalker.h
+	platformWin32.h
+	videoInfo/wmiVideoInfo.h
+	winConsole.h
+	winDInputDevice.h
+	winDirectInput.h
+	winFont.h
+	winVolume.h
+	win_common_prefix.h
+	win_debug_prefix.h
+	win_release_prefix.h
+)
+
+add_library(${TORQUE_BUILD}_platformWin32 STATIC ${TORQUE_PLATFORMWIN32_SRCS} ${TORQUE_PLATFORMWIN32_HEADERS})
+

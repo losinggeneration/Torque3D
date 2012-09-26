@@ -1,0 +1,75 @@
+set(TORQUE_LIGHTING_SRCS
+	advanced/advancedLightBinManager.cpp
+	advanced/advancedLightBufferConditioner.cpp
+	advanced/advancedLightManager.cpp
+	advanced/advancedLightingFeatures.cpp
+	advanced/glsl/advancedLightingFeaturesGLSL.cpp
+	advanced/glsl/gBufferConditionerGLSL.cpp
+	advanced/hlsl/advancedLightingFeaturesHLSL.cpp
+	advanced/hlsl/gBufferConditionerHLSL.cpp
+	basic/basicLightManager.cpp
+	basic/basicSceneObjectLightingPlugin.cpp
+	basic/blInteriorSystem.cpp
+	basic/blTerrainSystem.cpp
+	common/blobShadow.cpp
+	common/lightMapParams.cpp
+	common/projectedShadow.cpp
+	common/sceneLighting.cpp
+	common/scenePersist.cpp
+	common/shadowVolumeBSP.cpp
+	lightInfo.cpp
+	lightManager.cpp
+	lightQuery.cpp
+	lightingInterfaces.cpp
+	shadowManager.cpp
+	shadowMap/cubeLightShadowMap.cpp
+	shadowMap/dualParaboloidLightShadowMap.cpp
+	shadowMap/lightShadowMap.cpp
+	shadowMap/paraboloidLightShadowMap.cpp
+	shadowMap/pssmLightShadowMap.cpp
+	shadowMap/shadowMapManager.cpp
+	shadowMap/shadowMapPass.cpp
+	shadowMap/shadowMatHook.cpp
+	shadowMap/singleLightShadowMap.cpp
+)
+
+set(TORQUE_LIGHTING_HEADERS
+	advanced/advancedLightBinManager.h
+	advanced/advancedLightBufferConditioner.h
+	advanced/advancedLightManager.h
+	advanced/advancedLightingFeatures.h
+	advanced/glsl/advancedLightingFeaturesGLSL.h
+	advanced/glsl/gBufferConditionerGLSL.h
+	advanced/hlsl/advancedLightingFeaturesHLSL.h
+	advanced/hlsl/gBufferConditionerHLSL.h
+	basic/basicLightManager.h
+	basic/basicSceneObjectLightingPlugin.h
+	basic/blInteriorSystem.h
+	basic/blTerrainSystem.h
+	common/blobShadow.h
+	common/lightMapParams.h
+	common/projectedShadow.h
+	common/sceneLighting.h
+	common/sceneLightingGlobals.h
+	common/scenePersist.h
+	common/shadowBase.h
+	common/shadowVolumeBSP.h
+	lightInfo.h
+	lightManager.h
+	lightQuery.h
+	lightingInterfaces.h
+	shadowManager.h
+	shadowMap/cubeLightShadowMap.h
+	shadowMap/dualParaboloidLightShadowMap.h
+	shadowMap/lightShadowMap.h
+	shadowMap/paraboloidLightShadowMap.h
+	shadowMap/pssmLightShadowMap.h
+	shadowMap/shadowCommon.h
+	shadowMap/shadowMapManager.h
+	shadowMap/shadowMapPass.h
+	shadowMap/shadowMatHook.h
+	shadowMap/singleLightShadowMap.h
+)
+
+add_library(${TORQUE_BUILD}_lighting STATIC ${TORQUE_LIGHTING_SRCS} ${TORQUE_LIGHTING_HEADERS})
+

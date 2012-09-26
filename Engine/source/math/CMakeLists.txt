@@ -1,0 +1,75 @@
+set(TORQUE_MATH_SRCS
+	mAngAxis.cpp
+	mBox.cpp
+	mConsoleFunctions.cpp
+	mEase.cpp
+	mMathAMD.cpp
+	mMathAltivec.cpp
+	mMathSSE.cpp
+	mMath_C.cpp
+	mMatrix.cpp
+	mOrientedBox.cpp
+	mPlane.cpp
+	mPlaneTransformer.cpp
+	mPoint.cpp
+	mPolyhedron.cpp
+	mQuadPatch.cpp
+	mQuat.cpp
+	mRandom.cpp
+	mRect.cpp
+	mSolver.cpp
+	mSphere.cpp
+	mSplinePatch.cpp
+	mathTypes.cpp
+	mathUtils.cpp
+	test/testMathPlane.cpp
+	test/testPolyhedron.cpp
+	util/frustum.cpp
+	util/matrixSet.cpp
+	util/quadTransforms.cpp
+	util/sphereMesh.cpp
+	util/tResponseCurve.cpp
+)
+
+set(TORQUE_MATH_HEADERS
+	mAngAxis.h
+	mBox.h
+	mBoxBase.h
+	mConstants.h
+	mEase.h
+	mIntersector.h
+	mMath.h
+	mMathFn.h
+	mMatrix.h
+	mOrientedBox.h
+	mPlane.h
+	mPlaneSet.h
+	mPlaneTransformer.h
+	mPoint2.h
+	mPoint3.h
+	mPoint4.h
+	mPolyhedron.h
+	mPolyhedron.impl.h
+	mQuadPatch.h
+	mQuat.h
+	mRandom.h
+	mRandomDeck.h
+	mRandomSet.h
+	mRect.h
+	mSilhouetteExtractor.h
+	mSphere.h
+	mSplinePatch.h
+	mTransform.h
+	mathIO.h
+	mathTypes.h
+	mathUtils.h
+	util/frustum.h
+	util/matrixSet.h
+	util/matrixSetDelegateMethods.h
+	util/quadTransforms.h
+	util/sphereMesh.h
+	util/tResponseCurve.h
+)
+
+add_library(${TORQUE_BUILD}_math STATIC ${TORQUE_MATH_SRCS} ${TORQUE_MATH_HEADERS})
+

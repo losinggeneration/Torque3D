@@ -1,0 +1,48 @@
+set(TORQUE_FOREST_SRCS
+	editor/forestBrushElement.cpp
+	editor/forestBrushTool.cpp
+	editor/forestEditorCtrl.cpp
+	editor/forestSelectionTool.cpp
+	editor/forestTool.cpp
+	editor/forestUndo.cpp
+	forest.cpp
+	forestCell.cpp
+	forestCellBatch.cpp
+	forestCollision.cpp
+	forestDataFile.cpp
+	forestItem.cpp
+	forestRender.cpp
+	forestWindAccumulator.cpp
+	forestWindEmitter.cpp
+	forestWindMgr.cpp
+	glsl/windDeformationGLSL.cpp
+	hlsl/windDeformationHLSL.cpp
+	ts/tsForestCellBatch.cpp
+	ts/tsForestItemData.cpp
+	windDeformation.cpp
+)
+
+set(TORQUE_FOREST_HEADERS
+	editor/forestBrushElement.h
+	editor/forestBrushTool.h
+	editor/forestEditorCtrl.h
+	editor/forestSelectionTool.h
+	editor/forestTool.h
+	editor/forestUndo.h
+	forest.h
+	forestCell.h
+	forestCellBatch.h
+	forestCollision.h
+	forestDataFile.h
+	forestItem.h
+	forestWindAccumulator.h
+	forestWindEmitter.h
+	forestWindMgr.h
+	glsl/windDeformationGLSL.h
+	hlsl/windDeformationHLSL.h
+	ts/tsForestCellBatch.h
+	ts/tsForestItemData.h
+	windDeformation.h
+)
+
+add_library(${TORQUE_BUILD}_forest ${TORQUE_FOREST_SRCS} ${TORQUE_FOREST_HEADERS})

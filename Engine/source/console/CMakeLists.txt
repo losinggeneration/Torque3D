@@ -113,3 +113,4 @@ include_directories(
 )
 
 add_library(${TORQUE_BUILD}_console STATIC ${TORQUE_CONSOLE_SRCS} ${TORQUE_CONSOLE_HEADERS})
+

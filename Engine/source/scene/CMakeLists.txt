@@ -1,0 +1,60 @@
+set(TORQUE_SCENE_SRCS
+	culling/sceneCullingState.cpp
+	culling/sceneCullingVolume.cpp
+	culling/sceneZoneCullingState.cpp
+	pathManager.cpp
+	reflectionManager.cpp
+	reflectionMatHook.cpp
+	reflector.cpp
+	sceneCameraState.cpp
+	sceneContainer.cpp
+	sceneManager.cpp
+	sceneObject.cpp
+	scenePolyhedralSpace.cpp
+	sceneRenderState.cpp
+	sceneSpace.cpp
+	sceneTracker.cpp
+	sgUtil.cpp
+	simPath.cpp
+	zones/scenePolyhedralZone.cpp
+	zones/sceneRootZone.cpp
+	zones/sceneSimpleZone.cpp
+	zones/sceneTraversalState.cpp
+	zones/sceneZoneSpace.cpp
+	zones/sceneZoneSpaceManager.cpp
+)
+
+set(TORQUE_SCENE_HEADERS
+	culling/sceneCullingState.h
+	culling/sceneCullingVolume.h
+	culling/sceneZoneCullingState.h
+	fogStructs.h
+	mixin/sceneAmbientSoundObject.h
+	mixin/sceneAmbientSoundObject.impl.h
+	mixin/scenePolyhedralObject.h
+	mixin/scenePolyhedralObject.impl.h
+	pathManager.h
+	reflectionManager.h
+	reflectionMatHook.h
+	reflector.h
+	sceneCameraState.h
+	sceneContainer.h
+	sceneManager.h
+	sceneObject.h
+	sceneObjectLightingPlugin.h
+	scenePolyhedralSpace.h
+	sceneRenderState.h
+	sceneSpace.h
+	sceneTracker.h
+	sgUtil.h
+	simPath.h
+	zones/scenePolyhedralZone.h
+	zones/sceneRootZone.h
+	zones/sceneSimpleZone.h
+	zones/sceneTraversalState.h
+	zones/sceneZoneSpace.h
+	zones/sceneZoneSpaceManager.h
+)
+
+add_library(${TORQUE_BUILD}_scene STATIC ${TORQUE_SCENE_SRCS} ${TORQUE_SCENE_HEADERS})
+

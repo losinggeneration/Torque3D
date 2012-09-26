@@ -13,5 +13,21 @@ set(TORQUE_COLLISION_SRCS
 	polytope.cpp
 	vertexPolyList.cpp
 )
+set(TORQUE_COLLISION_HEADERS
+	abstractPolyList.h
+	boxConvex.h
+	clippedPolyList.h
+	collision.h
+	concretePolyList.h
+	convex.h
+	depthSortList.h
+	earlyOutPolyList.h
+	extrudedPolyList.h
+	gjk.h
+	optimizedPolyList.h
+	planeExtractor.h
+	polytope.h
+	vertexPolyList.h
+)
 
-add_library(${TORQUE_BUILD}_collision STATIC ${TORQUE_COLLISION_SRCS})
+add_library(${TORQUE_BUILD}_collision STATIC ${TORQUE_COLLISION_SRCS} ${TORQUE_COLLISION_HEADERS})
