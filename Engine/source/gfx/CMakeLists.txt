@@ -1,4 +1,4 @@
-set(TORQUE_GFX_SRCS
+set(TORQUE_GFX_D3D_SRCS
 	D3D9/gfxD3D9CardProfiler.cpp
 	D3D9/gfxD3D9Cubemap.cpp
 	D3D9/gfxD3D9Device.cpp
@@ -18,7 +18,36 @@ set(TORQUE_GFX_SRCS
 	D3D9/pc/gfxPCD3D9Target.cpp
 	D3D9/screenshotD3D9.cpp
 	D3D9/videoCaptureD3D9.cpp
+)
+set(TORQUE_GFX_NULL_SRCS
 	Null/gfxNullDevice.cpp
+)
+
+set(TORQUE_GFX_GL_SRCS
+	gl/gfxGLAppleFence.cpp
+	gl/gfxGLCardProfiler.cpp
+	gl/gfxGLCubemap.cpp
+	gl/gfxGLDevice.cpp
+	gl/gfxGLDevice.win.cpp
+	gl/gfxGLEnumTranslate.cpp
+	gl/gfxGLOcclusionQuery.cpp
+	gl/gfxGLPrimitiveBuffer.cpp
+	gl/gfxGLShader.cpp
+	gl/gfxGLStateBlock.cpp
+	gl/gfxGLTextureManager.cpp
+	gl/gfxGLTextureObject.cpp
+	gl/gfxGLTextureTarget.cpp
+	gl/gfxGLVertexBuffer.cpp
+	gl/gfxGLWindowTarget.cpp
+	gl/ggl/generator/parse.cpp
+	gl/ggl/ggl.cpp
+	gl/ggl/mac/aglBind.cpp
+	gl/ggl/win32/wglBind.cpp
+	gl/ggl/x11/glx.cpp
+	gl/ggl/x11/glxBind.cpp
+)
+
+set(TORQUE_GFX_SRCS
 	bitmap/bitmapUtils.cpp
 	bitmap/ddsLoader.cpp
 	bitmap/ddsUtils.cpp
@@ -57,27 +86,6 @@ set(TORQUE_GFX_SRCS
 	gfxVertexColor.cpp
 	gfxVertexFormat.cpp
 	gfxVertexTypes.cpp
-	gl/gfxGLAppleFence.cpp
-	gl/gfxGLCardProfiler.cpp
-	gl/gfxGLCubemap.cpp
-	gl/gfxGLDevice.cpp
-	gl/gfxGLDevice.win.cpp
-	gl/gfxGLEnumTranslate.cpp
-	gl/gfxGLOcclusionQuery.cpp
-	gl/gfxGLPrimitiveBuffer.cpp
-	gl/gfxGLShader.cpp
-	gl/gfxGLStateBlock.cpp
-	gl/gfxGLTextureManager.cpp
-	gl/gfxGLTextureObject.cpp
-	gl/gfxGLTextureTarget.cpp
-	gl/gfxGLVertexBuffer.cpp
-	gl/gfxGLWindowTarget.cpp
-	gl/ggl/generator/parse.cpp
-	gl/ggl/ggl.cpp
-	gl/ggl/mac/aglBind.cpp
-	gl/ggl/win32/wglBind.cpp
-	gl/ggl/x11/glx.cpp
-	gl/ggl/x11/glxBind.cpp
 	primBuilder.cpp
 	screenshot.cpp
 	sim/cubemapData.cpp
@@ -95,7 +103,7 @@ set(TORQUE_GFX_SRCS
 	video/videoEncoderTheora.cpp
 )
 
-set(TORQUE_GFX_HEADERS
+set(TORQUE_GFX_D3D_HEADERS
 	D3D9/d3dx9Functions.h
 	D3D9/gfxD3D9CardProfiler.h
 	D3D9/gfxD3D9Cubemap.h
@@ -113,7 +121,46 @@ set(TORQUE_GFX_HEADERS
 	D3D9/pc/gfxPCD3D9Target.h
 	D3D9/screenshotD3D9.h
 	D3D9/videoCaptureD3D9.h
+)
+
+set(TORQUE_GFX_NULL_HEADERS
 	Null/gfxNullDevice.h
+)
+
+set(TORQUE_GFX_GL_HEADERS
+	gl/gfxGLAppleFence.h
+	gl/gfxGLCardProfiler.h
+	gl/gfxGLCubemap.h
+	gl/gfxGLDevice.h
+	gl/gfxGLEnumTranslate.h
+	gl/gfxGLOcclusionQuery.h
+	gl/gfxGLPrimitiveBuffer.h
+	gl/gfxGLShader.h
+	gl/gfxGLStateBlock.h
+	gl/gfxGLTextureManager.h
+	gl/gfxGLTextureObject.h
+	gl/gfxGLTextureTarget.h
+	gl/gfxGLUtils.h
+	gl/gfxGLVertexBuffer.h
+	gl/gfxGLWindowTarget.h
+	gl/ggl/generated/glc.h
+	gl/ggl/generated/glcfn.h
+	gl/ggl/generated/gle.h
+	gl/ggl/generated/glefn.h
+	gl/ggl/generated/glxe.h
+	gl/ggl/generated/glxefn.h
+	gl/ggl/generated/glxfn.h
+	gl/ggl/generated/wgle.h
+	gl/ggl/generated/wglefn.h
+	gl/ggl/generated/wglfn.h
+	gl/ggl/ggl.h
+	gl/ggl/gglConfig.h
+	gl/ggl/mac/agl.h
+	gl/ggl/win32/wgl.h
+	gl/ggl/x11/glx.h
+)
+
+set(TORQUE_GFX_HEADERS
 	bitmap/bitmapUtils.h
 	bitmap/ddsFile.h
 	bitmap/ddsUtils.h
@@ -151,36 +198,6 @@ set(TORQUE_GFX_HEADERS
 	gfxVertexColor.h
 	gfxVertexFormat.h
 	gfxVertexTypes.h
-	gl/gfxGLAppleFence.h
-	gl/gfxGLCardProfiler.h
-	gl/gfxGLCubemap.h
-	gl/gfxGLDevice.h
-	gl/gfxGLEnumTranslate.h
-	gl/gfxGLOcclusionQuery.h
-	gl/gfxGLPrimitiveBuffer.h
-	gl/gfxGLShader.h
-	gl/gfxGLStateBlock.h
-	gl/gfxGLTextureManager.h
-	gl/gfxGLTextureObject.h
-	gl/gfxGLTextureTarget.h
-	gl/gfxGLUtils.h
-	gl/gfxGLVertexBuffer.h
-	gl/gfxGLWindowTarget.h
-	gl/ggl/generated/glc.h
-	gl/ggl/generated/glcfn.h
-	gl/ggl/generated/gle.h
-	gl/ggl/generated/glefn.h
-	gl/ggl/generated/glxe.h
-	gl/ggl/generated/glxefn.h
-	gl/ggl/generated/glxfn.h
-	gl/ggl/generated/wgle.h
-	gl/ggl/generated/wglefn.h
-	gl/ggl/generated/wglfn.h
-	gl/ggl/ggl.h
-	gl/ggl/gglConfig.h
-	gl/ggl/mac/agl.h
-	gl/ggl/win32/wgl.h
-	gl/ggl/x11/glx.h
 	primBuilder.h
 	screenshot.h
 	sim/cubemapData.h

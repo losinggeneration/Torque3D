@@ -45,7 +45,7 @@
 #define TORQUE_ENGINE_PRODUCT      ${TORQUE_ENGINE_PRODUCT}
 
 /// What's the name of your application? Used in a variety of places.
-#define TORQUE_APP_NAME            ${TORQUE_APP_NAME}
+#define TORQUE_APP_NAME            "${TORQUE_APP_NAME}"
 
 /// What version of the application specific source code is this?
 ///
@@ -53,7 +53,7 @@
 #define TORQUE_APP_VERSION         ${TORQUE_APP_VERSION}
 
 /// Human readable application version string.
-#define TORQUE_APP_VERSION_STRING  ${TORQUE_APP_VERSION_STRING}
+#define TORQUE_APP_VERSION_STRING  "${TORQUE_APP_VERSION_STRING}"
 
 /// Define me if you want to enable multithreading support.
 #cmakedefine TORQUE_MULTITHREAD
