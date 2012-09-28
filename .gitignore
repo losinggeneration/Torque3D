@@ -1,4 +1,26 @@
 #################
+# CMake
+#################
+CMakeFiles/
+cmake_install.cmake
+CMakeCache.txt
+
+# Configured headers
+Engine/source/torqueConfig.h
+
+#################
+# Make
+#################
+Makefile
+
+#################
+# Built binaries
+#################
+Templates/*/buildFiles/Make/
+Templates/*/buildFiles/*/Full*
+Templates/*/buildFiles/*/Empty*
+
+#################
 ## Eclipse
 #################
 

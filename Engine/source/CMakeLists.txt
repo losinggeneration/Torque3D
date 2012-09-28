@@ -33,6 +33,22 @@ else()
 	message(FATAL_ERROR "No build selected")
 endif(${TORQUE_FULL_BUILD})
 
+if(${CMAKE_GENERATOR} MATCHES "Visual Studio 10")
+	set(BUILD_TARGET "Visual Studio 2010")
+elseif(${CMAKE_GENERATOR} MATCHES "Visual Studio 9")
+	set(BUILD_TARGET "Visual Studio 2008")
+elseif(${CMAKE_GENERATOR} MATCHES Makefiles)
+	if(${TORQUE_DEDICATED})
+		set(BUILD_TARGET "Make_Ded")
+	else()
+		set(BUILD_TARGET "Make")
+	endif()
+else()
+	set(BUILD_TARGET ${CMAKE_GENERATOR})
+endif()
+
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../Templates/${TORQUE_BUILD}/buildFiles/${BUILD_TARGET}/)
+
 include_directories(
 	${CMAKE_SOURCE_DIR}
 	${CMAKE_CURRENT_BINARY_DIR}
@@ -63,7 +79,6 @@ add_definitions(
 	-DTORQUE_BASIC_LIGHTING
 	-DTORQUE_OGGVORBIS
 	-DTORQUE_OGGTHEORA
-	-DTORQUE_OGGVORIBS
 	-DTORQUE_COLLADA
 	-DDOM_INCLUDE_TINYXML
 	-DPCRE_STATIC
