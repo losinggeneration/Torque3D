@@ -78,9 +78,9 @@ set(TORQUE_T3D_SRCS
 	proximityMine.cpp
 	rigid.cpp
 	rigidShape.cpp
-	sceneComponent/T3DSceneClient.cpp
-	sceneComponent/T3DSceneComponent.cpp
-	sceneComponent/T3DTransform.cpp
+# 	sceneComponent/T3DSceneClient.cpp
+# 	sceneComponent/T3DSceneComponent.cpp
+# 	sceneComponent/T3DTransform.cpp
 	scopeAlwaysShape.cpp
 	sfx/sfx3DWorld.cpp
 	sfx/sfxEmitter.cpp
@@ -182,9 +182,9 @@ set(TORQUE_T3D_HEADERS
 	resource.h
 	rigid.h
 	rigidShape.h
-	sceneComponent/T3DSceneClient.h
-	sceneComponent/T3DSceneComponent.h
-	sceneComponent/T3DTransform.h
+# 	sceneComponent/T3DSceneClient.h
+# 	sceneComponent/T3DSceneComponent.h
+# 	sceneComponent/T3DTransform.h
 	sfx/sfx3DWorld.h
 	sfx/sfxEmitter.h
 	sfx/sfxSpace.h
