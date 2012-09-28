@@ -2,7 +2,7 @@ project(Torque3D)
 cmake_minimum_required(VERSION 2.8)
 
 include(CMakeDependentOption)
-
+# We can only choose one build type
 CMAKE_DEPENDENT_OPTION(TORQUE_FULL_BUILD "Set the Torque3D to the Full build" OFF
 	"NOT TORQUE_FULL_PHYSX_BUILD; NOT TORQUE_EMPTY_BUILD; NOT TORQUE_EMPTY_PHYSX_BUILD" OFF)
 
@@ -21,18 +21,24 @@ if(${TORQUE_DEDICATED})
 	add_definitions(-DTORQUE_DEDICATED)
 endif(${TORQUE_DEDICATED})
 
+# Set some options based on the build type
 if(${TORQUE_FULL_BUILD})
 	set(TORQUE_BUILD "Full")
+	set(TORQUE_PHYSICS_BULLET 1)
 elseif(${TORQUE_FULL_PHYSX_BUILD})
 	set(TORQUE_BUILD "Full_PhysX")
+	set(TORQUE_PHYSICS_PHYSX 1)
 elseif(${TORQUE_EMPTY_BUILD})
 	set(TORQUE_BUILD "Empty")
+	set(TORQUE_PHYSICS_BULLET 1)
 elseif(${TORQUE_EMPTY_PHYSX_BUILD})
 	set(TORQUE_BUILD "Empty_PhysX")
+	set(TORQUE_PHYSICS_PHYSX 1)
 else()
 	message(FATAL_ERROR "No build selected")
 endif(${TORQUE_FULL_BUILD})
 
+# This is to help set where executables should be written
 if(${CMAKE_GENERATOR} MATCHES "Visual Studio 10")
 	set(BUILD_TARGET "Visual Studio 2010")
 elseif(${CMAKE_GENERATOR} MATCHES "Visual Studio 9")
@@ -50,7 +56,9 @@ endif()
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../Templates/${TORQUE_BUILD}/buildFiles/${BUILD_TARGET}/)
 
 include_directories(
+	# Needed for torqueConfig.h
 	${CMAKE_SOURCE_DIR}
+	${CMAKE_CURRENT_SOURCE_DIR}/../lib/
 	${CMAKE_CURRENT_BINARY_DIR}
 )
 

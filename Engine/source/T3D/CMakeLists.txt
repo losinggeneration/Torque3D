@@ -60,12 +60,6 @@ set(TORQUE_T3D_SRCS
 	occlusionVolume.cpp
 	pathCamera.cpp
 	physicalZone.cpp
-	physics/bullet/btBody.cpp
-	physics/bullet/btCollision.cpp
-	physics/bullet/btDebugDraw.cpp
-	physics/bullet/btPlayer.cpp
-	physics/bullet/btPlugin.cpp
-	physics/bullet/btWorld.cpp
 	physics/physicsBody.cpp
 	physics/physicsDebris.cpp
 	physics/physicsEvents.cpp
@@ -76,18 +70,6 @@ set(TORQUE_T3D_SRCS
 	physics/physicsShape.cpp
 	physics/physicsUserData.cpp
 	physics/physicsWorld.cpp
-	physics/physx/pxBody.cpp
-	physics/physx/pxCloth.cpp
-	physics/physx/pxCollision.cpp
-	physics/physx/pxContactReporter.cpp
-	physics/physx/pxFluid.cpp
-	physics/physx/pxMaterial.cpp
-	physics/physx/pxMultiActor.cpp
-	physics/physx/pxPlayer.cpp
-	physics/physx/pxPlugin.cpp
-	physics/physx/pxStream.cpp
-	physics/physx/pxUtils.cpp
-	physics/physx/pxWorld.cpp
 	player.cpp
 	pointLight.cpp
 	portal.cpp
@@ -179,14 +161,6 @@ set(TORQUE_T3D_HEADERS
 	occlusionVolume.h
 	pathCamera.h
 	physicalZone.h
-	physics/bullet/bt.h
-	physics/bullet/btBody.h
-	physics/bullet/btCasts.h
-	physics/bullet/btCollision.h
-	physics/bullet/btDebugDraw.h
-	physics/bullet/btPlayer.h
-	physics/bullet/btPlugin.h
-	physics/bullet/btWorld.h
 	physics/physicsBody.h
 	physics/physicsCollision.h
 	physics/physicsCommon.h
@@ -199,20 +173,6 @@ set(TORQUE_T3D_HEADERS
 	physics/physicsShape.h
 	physics/physicsUserData.h
 	physics/physicsWorld.h
-	physics/physx/px.h
-	physics/physx/pxBody.h
-	physics/physx/pxCasts.h
-	physics/physx/pxCloth.h
-	physics/physx/pxCollision.h
-	physics/physx/pxContactReporter.h
-	physics/physx/pxFluid.h
-	physics/physx/pxMaterial.h
-	physics/physx/pxMultiActor.h
-	physics/physx/pxPlayer.h
-	physics/physx/pxPlugin.h
-	physics/physx/pxStream.h
-	physics/physx/pxUtils.h
-	physics/physx/pxWorld.h
 	player.h
 	pointLight.h
 	portal.h
@@ -243,5 +203,64 @@ set(TORQUE_T3D_HEADERS
 	zone.h
 )
 
-add_library(${TORQUE_BUILD}_T3D STATIC ${TORQUE_T3D_SRCS} ${TORQUE_T3D_HEADERS})
+if(${TORQUE_PHYSICS_BULLET})
+	set(TORQUE_PHYSICS_SRCS
+		physics/bullet/btBody.cpp
+		physics/bullet/btCollision.cpp
+		physics/bullet/btDebugDraw.cpp
+		physics/bullet/btPlayer.cpp
+		physics/bullet/btPlugin.cpp
+		physics/bullet/btWorld.cpp
+	)
+	set(TORQUE_PHYSICS_HEADERS
+		physics/bullet/bt.h
+		physics/bullet/btBody.h
+		physics/bullet/btCasts.h
+		physics/bullet/btCollision.h
+		physics/bullet/btDebugDraw.h
+		physics/bullet/btPlayer.h
+		physics/bullet/btPlugin.h
+		physics/bullet/btWorld.h
+	)
+
+	include_directories(${CMAKE_SOURCE_DIR}/../lib/bullet/src)
+elseif(${TORQUE_PHYSICS_PHYSX})
+	set(TORQUE_PHYSICS_SRCS
+		physics/physx/pxBody.cpp
+		physics/physx/pxCloth.cpp
+		physics/physx/pxCollision.cpp
+		physics/physx/pxContactReporter.cpp
+		physics/physx/pxFluid.cpp
+		physics/physx/pxMaterial.cpp
+		physics/physx/pxMultiActor.cpp
+		physics/physx/pxPlayer.cpp
+		physics/physx/pxPlugin.cpp
+		physics/physx/pxStream.cpp
+		physics/physx/pxUtils.cpp
+		physics/physx/pxWorld.cpp
+	)
+
+	set(TORQUE_PHYSICS_HEADERS
+		physics/physx/px.h
+		physics/physx/pxBody.h
+		physics/physx/pxCasts.h
+		physics/physx/pxCloth.h
+		physics/physx/pxCollision.h
+		physics/physx/pxContactReporter.h
+		physics/physx/pxFluid.h
+		physics/physx/pxMaterial.h
+		physics/physx/pxMultiActor.h
+		physics/physx/pxPlayer.h
+		physics/physx/pxPlugin.h
+		physics/physx/pxStream.h
+		physics/physx/pxUtils.h
+		physics/physx/pxWorld.h
+	)
+else()
+	message(FATAL_ERROR "No valid physics backend selected")
+endif(${TORQUE_PHYSICS_BULLET})
+
+add_library(${TORQUE_BUILD}_T3D STATIC ${TORQUE_T3D_SRCS} ${TORQUE_T3D_HEADERS}
+	${TORQUE_PHYSICS_SRCS} ${TORQUE_PHYSICS_HEADERS}
+)
 
