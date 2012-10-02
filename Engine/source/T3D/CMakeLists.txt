@@ -104,3 +104,14 @@ add_subdirectory(sfx)
 add_subdirectory(decal)
 
 add_library(${TORQUE_BUILD}_T3D STATIC ${TORQUE_T3D_SRCS} ${TORQUE_T3D_HEADERS})
+target_link_libraries(${TORQUE_BUILD}_T3D LINK_INTERFACE_LIBRARIES
+	#sceneComponent/${TORQUE_BUILD}_T3D_sceneComponent
+	decal/${TORQUE_BUILD}_T3D_decal
+	fps/${TORQUE_BUILD}_T3D_fps
+	fx/${TORQUE_BUILD}_T3D_fx
+	gameBase/${TORQUE_BUILD}_T3D_gameBase
+	physics/${TORQUE_BUILD}_T3D_physics
+	sfx/${TORQUE_BUILD}_T3D_sfx
+	turret/${TORQUE_BUILD}_T3D_turret
+	vehicles/${TORQUE_BUILD}_T3D_vehicles
+)

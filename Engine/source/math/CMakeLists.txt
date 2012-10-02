@@ -71,5 +71,14 @@ set(TORQUE_MATH_HEADERS
 	util/tResponseCurve.h
 )
 
-add_library(${TORQUE_BUILD}_math STATIC ${TORQUE_MATH_SRCS} ${TORQUE_MATH_HEADERS})
+# Not 64 bit safe...
+enable_language(ASM_NASM)
+
+set(TORQUE_MATH_ASM
+	mMathAMD_ASM.asm
+	mMathSSE_ASM.asm
+	mMath_ASM.asm
+)
+
+add_library(${TORQUE_BUILD}_math STATIC ${TORQUE_MATH_SRCS} ${TORQUE_MATH_HEADERS} ${TORQUE_MATH_ASM})
 
