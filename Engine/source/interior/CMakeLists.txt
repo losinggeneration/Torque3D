@@ -28,5 +28,11 @@ set(TORQUE_INTERIR_HEADERS
 	pathedInterior.h
 )
 
+include_directories(
+	${CMAKE_SOURCE_DIR}/../lib/tinyxml
+	${CMAKE_SOURCE_DIR}/../lib/collada/include
+	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
+)
+
 add_library(${TORQUE_BUILD}_interior STATIC ${TORQUE_INTERIR_SRCS} ${TORQUE_INTERIR_HEADERS})
 

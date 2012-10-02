@@ -15,8 +15,19 @@ CMAKE_DEPENDENT_OPTION(TORQUE_EMPTY_BUILD "Set the Torque3D to the Empty build" 
 CMAKE_DEPENDENT_OPTION(TORQUE_EMPTY_PHYSX_BUILD "Set the Torque3D to the Empty PhysX build" OFF
 	"NOT TORQUE_FULL_BUILD; NOT TORQUE_FULL_PHYSX_BUILD; NOT TORQUE_EMPTY_BUILD" OFF)
 
+# Select the defalt shader language to use
+CMAKE_DEPENDENT_OPTION(TORQUE_USE_GLSL "Use GLSL as the default shader language" OFF
+	"NOT TORQUE_USE_HLSL" OFF)
+CMAKE_DEPENDENT_OPTION(TORQUE_USE_HLSL "Use HLSL as the default shader language" OFF
+	"NOT TORQUE_USE_GLSL" OFF)
+
 option(TORQUE_DEDICATED "Build Torque dedicated server" OFF)
 # TODO Option for T3D/gameBase/ std or hifi
+# TODO option: TORQUE_USE_SFX_DSOUND
+# TODO option: TORQUE_USE_SFX_FMOD
+# TODO option: TORQUE_USE_SFX_NULL
+# TODO option: TORQUE_USE_SFX_OPENAL
+# TODO option: TORQUE_USE_SFX_XAUDIO
 
 # Set some options based on the build type
 if(${TORQUE_FULL_BUILD})

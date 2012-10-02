@@ -79,8 +79,6 @@ elseif(${TORQUE_PHYSICS_PHYSX})
 		physx/pxUtils.h
 		physx/pxWorld.h
 	)
-else()
-	# No backend physics, probably for dedicated server?
 endif(${TORQUE_PHYSICS_BULLET})
 
 add_library(${TORQUE_BUILD}_T3D_physics STATIC

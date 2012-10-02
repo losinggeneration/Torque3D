@@ -1,30 +1,4 @@
 set(TORQUE_SFX_SRCS
-	dsound/sfxDSBuffer.cpp
-	dsound/sfxDSDevice.cpp
-	dsound/sfxDSProvider.cpp
-	dsound/sfxDSVoice.cpp
-	fmod/sfxFMODBuffer.cpp
-	fmod/sfxFMODDevice.cpp
-	fmod/sfxFMODEvent.cpp
-	fmod/sfxFMODEventGroup.cpp
-	fmod/sfxFMODEventSource.cpp
-	fmod/sfxFMODPlugin.cpp
-	fmod/sfxFMODProject.cpp
-	fmod/sfxFMODProvider.cpp
-	fmod/sfxFMODVoice.cpp
-	media/sfxVorbisStream.cpp
-	media/sfxWavStream.cpp
-	null/sfxNullBuffer.cpp
-	null/sfxNullDevice.cpp
-	null/sfxNullProvider.cpp
-	null/sfxNullVoice.cpp
-	openal/aldlist.cpp
-	openal/mac/LoadOAL.mac.cpp
-	openal/sfxALBuffer.cpp
-	openal/sfxALDevice.cpp
-	openal/sfxALProvider.cpp
-	openal/sfxALVoice.cpp
-	openal/win32/LoadOAL.cpp
 	sfxAmbience.cpp
 	sfxBuffer.cpp
 	sfxController.cpp
@@ -48,39 +22,9 @@ set(TORQUE_SFX_SRCS
 	sfxTrack.cpp
 	sfxTypes.cpp
 	sfxVoice.cpp
-	xaudio/sfxXAudioBuffer.cpp
-	xaudio/sfxXAudioDevice.cpp
-	xaudio/sfxXAudioProvider.cpp
-	xaudio/sfxXAudioVoice.cpp
 )
 
 set(TORQUE_SFX_HEADERS
-	dsound/dsFunctions.h
-	dsound/sfxDSBuffer.h
-	dsound/sfxDSDevice.h
-	dsound/sfxDSVoice.h
-	fmod/fmodErrors.h
-	fmod/fmodFunctions.h
-	fmod/sfxFMODBuffer.h
-	fmod/sfxFMODDevice.h
-	fmod/sfxFMODEvent.h
-	fmod/sfxFMODEventGroup.h
-	fmod/sfxFMODEventSource.h
-	fmod/sfxFMODPlugin.h
-	fmod/sfxFMODProject.h
-	fmod/sfxFMODVoice.h
-	media/sfxVorbisStream.h
-	media/sfxWavStream.h
-	null/sfxNullBuffer.h
-	null/sfxNullDevice.h
-	null/sfxNullVoice.h
-	openal/LoadOAL.h
-	openal/aldlist.h
-	openal/sfxALBuffer.h
-	openal/sfxALCaps.h
-	openal/sfxALDevice.h
-	openal/sfxALVoice.h
-	sfxAmbience.h
 	sfxBuffer.h
 	sfxCommon.h
 	sfxController.h
@@ -106,10 +50,21 @@ set(TORQUE_SFX_HEADERS
 	sfxTypes.h
 	sfxVoice.h
 	sfxWorld.h
-	xaudio/sfxXAudioBuffer.h
-	xaudio/sfxXAudioDevice.h
-	xaudio/sfxXAudioVoice.h
 )
+
+if(TORQUE_USE_SFX_DSOUND)
+	add_subdirectory(dsound)
+elseif(TORQUE_USE_SFX_FMOD)
+	add_subdirectory(fmod)
+elseif(TORQUE_USE_SFX_NULL)
+	add_subdirectory(null)
+elseif(TORQUE_USE_SFX_OPENAL)
+	add_subdirectory(openal)
+elseif(TORQUE_USE_SFX_XAUDIO)
+	add_subdirectory(xaudio)
+endif()
+
+add_subdirectory(media)
 
 add_library(${TORQUE_BUILD}_sfx STATIC ${TORQUE_SFX_SRCS} ${TORQUE_SFX_HEADERS})
 

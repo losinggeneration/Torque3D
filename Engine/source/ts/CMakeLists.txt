@@ -68,5 +68,12 @@ set(TORQUE_TS_HEADERS
 	tsTransform.h
 )
 
+# If split up, likely only needed for the subdirectory collada
+include_directories(
+	${CMAKE_SOURCE_DIR}/../lib/tinyxml
+	${CMAKE_SOURCE_DIR}/../lib/collada/include
+	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
+)
+
 add_library(${TORQUE_BUILD}_ts STATIC ${TORQUE_TS_SRCS} ${TORQUE_TS_HEADERS})
 
