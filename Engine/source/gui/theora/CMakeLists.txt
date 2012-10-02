@@ -1,0 +1,9 @@
+set(TORQUE_GUI_THEORA_SRCS
+	guiTheoraCtrl.cpp
+)
+
+set(TORQUE_GUI_THEORA_HEADERS
+	guiTheoraCtrl.h
+)
+
+add_library(${TORQUE_BUILD}_gui_theora STATIC ${TORQUE_GUI_THEORA_SRCS} ${TORQUE_GUI_THEORA_HEADERS})

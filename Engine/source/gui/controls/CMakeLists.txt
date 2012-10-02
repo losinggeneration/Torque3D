@@ -1,0 +1,60 @@
+set(TORQUE_GUI_CONTROLS_SRCS
+	guiBackgroundCtrl.cpp
+	guiBitmapBorderCtrl.cpp
+	guiBitmapCtrl.cpp
+	guiColorPicker.cpp
+	guiConsole.cpp
+	guiConsoleEditCtrl.cpp
+	guiConsoleTextCtrl.cpp
+	guiDecoyCtrl.cpp
+	guiDirectoryFileListCtrl.cpp
+	guiFileTreeCtrl.cpp
+	guiGameListMenuCtrl.cpp
+	guiGameListOptionsCtrl.cpp
+	guiGradientCtrl.cpp
+	guiListBoxCtrl.cpp
+	guiMaterialCtrl.cpp
+	guiMLTextCtrl.cpp
+	guiMLTextEditCtrl.cpp
+	guiPopUpCtrl.cpp
+	guiPopUpCtrlEx.cpp
+	guiSliderCtrl.cpp
+	guiTabPageCtrl.cpp
+	guiTextCtrl.cpp
+	guiTextEditCtrl.cpp
+	guiTextEditSliderBitmapCtrl.cpp
+	guiTextEditSliderCtrl.cpp
+	guiTextListCtrl.cpp
+	guiTreeViewCtrl.cpp
+)
+
+set(TORQUE_GUI_CONTROLS_HEADERS
+	guiBackgroundCtrl.h
+	guiBitmapCtrl.h
+	guiColorPicker.h
+	guiConsoleEditCtrl.h
+	guiConsole.h
+	guiConsoleTextCtrl.h
+	guiDecoyCtrl.h
+	guiDirectoryFileListCtrl.h
+	guiFileTreeCtrl.h
+	guiGameListMenuCtrl.h
+	guiGameListOptionsCtrl.h
+	guiGradientCtrl.h
+	guiListBoxCtrl.h
+	guiMaterialCtrl.h
+	guiMLTextCtrl.h
+	guiMLTextEditCtrl.h
+	guiPopUpCtrlEx.h
+	guiPopUpCtrl.h
+	guiSliderCtrl.h
+	guiTabPageCtrl.h
+	guiTextCtrl.h
+	guiTextEditCtrl.h
+	guiTextEditSliderBitmapCtrl.h
+	guiTextEditSliderCtrl.h
+	guiTextListCtrl.h
+	guiTreeViewCtrl.h
+)
+
+add_library(${TORQUE_BUILD}_gui_controls STATIC ${TORQUE_GUI_CONTROLS_SRCS} ${TORQUE_GUI_CONTROLS_HEADERS})

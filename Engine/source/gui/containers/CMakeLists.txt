@@ -1,0 +1,39 @@
+set(TORQUE_GUI_CONTAINERS_SRCS
+	guiAutoScrollCtrl.cpp
+	guiContainer.cpp
+	guiCtrlArrayCtrl.cpp
+	guiDragAndDropCtrl.cpp
+	guiDynamicCtrlArrayCtrl.cpp
+	guiFormCtrl.cpp
+	guiFrameCtrl.cpp
+	guiPaneCtrl.cpp
+	guiPanel.cpp
+	guiRolloutCtrl.cpp
+	guiScrollCtrl.cpp
+	guiSplitContainer.cpp
+	guiStackCtrl.cpp
+	guiTabBookCtrl.cpp
+	guiWindowCollapseCtrl.cpp
+	guiWindowCtrl.cpp
+)
+
+set(TORQUE_GUI_CONTAINERS_HEADERS
+	guiAutoScrollCtrl.h
+	guiContainer.h
+	guiCtrlArrayCtrl.h
+	guiDragAndDropCtrl.h
+	guiDynamicCtrlArrayCtrl.h
+	guiFormCtrl.h
+	guiFrameCtrl.h
+	guiPaneCtrl.h
+	guiPanel.h
+	guiRolloutCtrl.h
+	guiScrollCtrl.h
+	guiSplitContainer.h
+	guiStackCtrl.h
+	guiTabBookCtrl.h
+	guiWindowCollapseCtrl.h
+	guiWindowCtrl.h
+)
+
+add_library(${TORQUE_BUILD}_gui_containers STATIC ${TORQUE_GUI_CONTAINERS_SRCS} ${TORQUE_GUI_CONTAINERS_HEADERS})

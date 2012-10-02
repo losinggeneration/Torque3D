@@ -1,0 +1,9 @@
+set(TORQUE_GUI_SHINY_SRCS
+	guiTickCtrl.cpp
+)
+
+set(TORQUE_GUI_SHINY_HEADERS
+	guiTickCtrl.h
+)
+
+add_library(${TORQUE_BUILD}_gui_shiny STATIC ${TORQUE_GUI_SHINY_SRCS} ${TORQUE_GUI_SHINY_HEADERS})

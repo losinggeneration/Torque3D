@@ -1,0 +1,9 @@
+set(TORQUE_GUI_3D_SRCS
+	guiTSControl.cpp
+)
+
+set(TORQUE_GUI_3D_HEADERS
+	guiTSControl.h
+)
+
+add_library(${TORQUE_BUILD}_gui_3d STATIC ${TORQUE_GUI_3D_SRCS} ${TORQUE_GUI_3D_HEADERS})
