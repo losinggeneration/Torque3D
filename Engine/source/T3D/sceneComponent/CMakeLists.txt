@@ -1,0 +1,15 @@
+set(TORQUE_T3D_SCENECOMPONENT_SRCS
+	T3DSceneClient.cpp
+	T3DSceneComponent.cpp
+	T3DTransform.cpp
+)
+
+set(TORQUE_T3D_SCENECOMPONENT_HEADERS
+	T3DSceneClient.h
+	T3DSceneComponent.h
+	T3DTransform.h
+)
+
+add_library(${TORQUE_BUILD}_T3D_sceneComponent STATIC
+	${TORQUE_T3D_SCENECOMPONENT_SRCS} ${TORQUE_T3DSCENECOMPONENT__HEADERS}
+)

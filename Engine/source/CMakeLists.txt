@@ -16,10 +16,7 @@ CMAKE_DEPENDENT_OPTION(TORQUE_EMPTY_PHYSX_BUILD "Set the Torque3D to the Empty P
 	"NOT TORQUE_FULL_BUILD; NOT TORQUE_FULL_PHYSX_BUILD; NOT TORQUE_EMPTY_BUILD" OFF)
 
 option(TORQUE_DEDICATED "Build Torque dedicated server" OFF)
-
-if(${TORQUE_DEDICATED})
-	add_definitions(-DTORQUE_DEDICATED)
-endif(${TORQUE_DEDICATED})
+# TODO Option for T3D/gameBase/ std or hifi
 
 # Set some options based on the build type
 if(${TORQUE_FULL_BUILD})
@@ -37,6 +34,13 @@ elseif(${TORQUE_EMPTY_PHYSX_BUILD})
 else()
 	message(FATAL_ERROR "No build selected")
 endif(${TORQUE_FULL_BUILD})
+
+if(${TORQUE_DEDICATED})
+	add_definitions(-DTORQUE_DEDICATED)
+	# We want to unset any extra physics
+	set(TORQUE_PHYSICS_BULLET 0)
+	set(TORQUE_PHYSICS_PHYSX 0)
+endif(${TORQUE_DEDICATED})
 
 # This is to help set where executables should be written
 if(${CMAKE_GENERATOR} MATCHES "Visual Studio 10")
