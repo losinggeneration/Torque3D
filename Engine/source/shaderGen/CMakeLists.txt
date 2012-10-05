@@ -1,4 +1,4 @@
-set(TORQUE_SHADERGEN_SRCS
+add_srcs(
 	GLSL/bumpGLSL.cpp
 	GLSL/depthGLSL.cpp
 	GLSL/paraboloidGLSL.cpp
@@ -28,7 +28,7 @@ set(TORQUE_SHADERGEN_SRCS
 	shaderOp.cpp
 )
 
-set(TORQUE_SHADERGEN_HEADERS
+add_headers(
 	GLSL/bumpGLSL.h
 	GLSL/depthGLSL.h
 	GLSL/paraboloidGLSL.h
@@ -56,5 +56,5 @@ set(TORQUE_SHADERGEN_HEADERS
 	shaderOp.h
 )
 
-add_library(${TORQUE_BUILD}_shaderGen STATIC ${TORQUE_SHADERGEN_SRCS} ${TORQUE_SHADERGEN_HEADERS})
+
 

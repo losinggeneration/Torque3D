@@ -1,4 +1,4 @@
-set(TORQUE_APP_SRCS
+add_srcs(
 	badWordFilter.cpp
 	banList.cpp
 	game.cpp
@@ -10,7 +10,8 @@ set(TORQUE_APP_SRCS
 	net/tcpObject.cpp
 	version.cpp
 )
-set(TORQUE_APP_HEADERS
+
+add_headers(
 	auth.h
 	badWordFilter.h
 	banList.h
@@ -21,6 +22,3 @@ set(TORQUE_APP_HEADERS
 	net/tcpObject.h
 	version.h
 )
-
-add_library(${TORQUE_BUILD}_app STATIC ${TORQUE_APP_SRCS} ${TORQUE_APP_HEADERS})
-

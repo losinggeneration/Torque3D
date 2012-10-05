@@ -1,4 +1,4 @@
-set(TORQUE_GUI_CONTROLS_SRCS
+add_srcs(
 	guiBackgroundCtrl.cpp
 	guiBitmapBorderCtrl.cpp
 	guiBitmapCtrl.cpp
@@ -28,7 +28,7 @@ set(TORQUE_GUI_CONTROLS_SRCS
 	guiTreeViewCtrl.cpp
 )
 
-set(TORQUE_GUI_CONTROLS_HEADERS
+add_headers(
 	guiBackgroundCtrl.h
 	guiBitmapCtrl.h
 	guiColorPicker.h
@@ -56,5 +56,3 @@ set(TORQUE_GUI_CONTROLS_HEADERS
 	guiTextListCtrl.h
 	guiTreeViewCtrl.h
 )
-
-add_library(${TORQUE_BUILD}_gui_controls STATIC ${TORQUE_GUI_CONTROLS_SRCS} ${TORQUE_GUI_CONTROLS_HEADERS})

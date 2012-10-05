@@ -1,4 +1,4 @@
-set(TORQUE_FOREST_SRCS
+add_srcs(
 	editor/forestBrushElement.cpp
 	editor/forestBrushTool.cpp
 	editor/forestEditorCtrl.cpp
@@ -22,7 +22,7 @@ set(TORQUE_FOREST_SRCS
 	windDeformation.cpp
 )
 
-set(TORQUE_FOREST_HEADERS
+add_headers(
 	editor/forestBrushElement.h
 	editor/forestBrushTool.h
 	editor/forestEditorCtrl.h
@@ -45,4 +45,4 @@ set(TORQUE_FOREST_HEADERS
 	windDeformation.h
 )
 
-add_library(${TORQUE_BUILD}_forest ${TORQUE_FOREST_SRCS} ${TORQUE_FOREST_HEADERS})
+

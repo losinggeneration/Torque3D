@@ -1,4 +1,4 @@
-set(TORQUE_CORE_SRCS
+add_srcs(
 	bitRender.cpp
 	bitVector.cpp
 	color.cpp
@@ -73,7 +73,7 @@ set(TORQUE_CORE_SRCS
 	volume.cpp
 )
 
-set(TORQUE_CORE_HEADERS
+add_headers(
 	bitMatrix.h
 	bitRender.h
 	bitSet.h
@@ -174,6 +174,3 @@ set(TORQUE_CORE_HEADERS
 	virtualMountSystem.h
 	volume.h
 )
-
-add_library(${TORQUE_BUILD}_core STATIC ${TORQUE_CORE_SRCS} ${TORQUE_CORE_HEADERS})
-

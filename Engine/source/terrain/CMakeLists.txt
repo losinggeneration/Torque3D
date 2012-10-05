@@ -1,4 +1,4 @@
-set(TORQUE_TERRAIN_SRCS
+add_srcs(
 	glsl/terrFeatureGLSL.cpp
 	hlsl/terrFeatureHLSL.cpp
 	terrCell.cpp
@@ -14,7 +14,7 @@ set(TORQUE_TERRAIN_SRCS
 	terrRender.cpp
 )
 
-set(TORQUE_TERRAIN_HEADERS
+add_headers(
 	glsl/terrFeatureGLSL.h
 	hlsl/terrFeatureHLSL.h
 	terrCell.h
@@ -27,5 +27,5 @@ set(TORQUE_TERRAIN_HEADERS
 	terrRender.h
 )
 
-add_library(${TORQUE_BUILD}_terrain STATIC ${TORQUE_TERRAIN_SRCS} ${TORQUE_TERRAIN_HEADERS})
+
 

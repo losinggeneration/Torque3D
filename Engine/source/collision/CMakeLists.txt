@@ -1,4 +1,4 @@
-set(TORQUE_COLLISION_SRCS
+add_srcs(
 	abstractPolyList.cpp
 	boxConvex.cpp
 	clippedPolyList.cpp
@@ -13,7 +13,8 @@ set(TORQUE_COLLISION_SRCS
 	polytope.cpp
 	vertexPolyList.cpp
 )
-set(TORQUE_COLLISION_HEADERS
+
+add_headers(
 	abstractPolyList.h
 	boxConvex.h
 	clippedPolyList.h
@@ -29,5 +30,3 @@ set(TORQUE_COLLISION_HEADERS
 	polytope.h
 	vertexPolyList.h
 )
-
-add_library(${TORQUE_BUILD}_collision STATIC ${TORQUE_COLLISION_SRCS} ${TORQUE_COLLISION_HEADERS})

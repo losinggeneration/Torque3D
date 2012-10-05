@@ -1,4 +1,15 @@
-set(TORQUE_T3D_SRCS
+add_subdirectory(fps)
+add_subdirectory(gameBase)
+add_subdirectory(vehicles)
+add_subdirectory(turret)
+# Broken
+# add_subdirectory(sceneComponent)
+add_subdirectory(fx)
+add_subdirectory(physics)
+add_subdirectory(sfx)
+add_subdirectory(decal)
+
+add_srcs(
 	aiClient.cpp
 	aiConnection.cpp
 	aiPlayer.cpp
@@ -46,7 +57,7 @@ set(TORQUE_T3D_SRCS
 	zone.cpp
 )
 
-set(TORQUE_T3D_HEADERS
+add_headers(
 	aiClient.h
 	aiConnection.h
 	aiPlayer.h
@@ -92,26 +103,8 @@ set(TORQUE_T3D_HEADERS
 	zone.h
 )
 
-add_subdirectory(fps)
-add_subdirectory(gameBase)
-add_subdirectory(vehicles)
-add_subdirectory(turret)
-# Broken
-# add_subdirectory(sceneComponent)
-add_subdirectory(fx)
-add_subdirectory(physics)
-add_subdirectory(sfx)
-add_subdirectory(decal)
-
-add_library(${TORQUE_BUILD}_T3D STATIC ${TORQUE_T3D_SRCS} ${TORQUE_T3D_HEADERS})
-target_link_libraries(${TORQUE_BUILD}_T3D LINK_INTERFACE_LIBRARIES
-	#sceneComponent/${TORQUE_BUILD}_T3D_sceneComponent
-	decal/${TORQUE_BUILD}_T3D_decal
-	fps/${TORQUE_BUILD}_T3D_fps
-	fx/${TORQUE_BUILD}_T3D_fx
-	gameBase/${TORQUE_BUILD}_T3D_gameBase
-	physics/${TORQUE_BUILD}_T3D_physics
-	sfx/${TORQUE_BUILD}_T3D_sfx
-	turret/${TORQUE_BUILD}_T3D_turret
-	vehicles/${TORQUE_BUILD}_T3D_vehicles
+add_includes(
+	${CMAKE_SOURCE_DIR}/../lib/collada/include
+	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
 )
+

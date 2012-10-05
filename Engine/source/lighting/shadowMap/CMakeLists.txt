@@ -1,4 +1,4 @@
-set(TORQUE_LIGHTING_SHADOWMAP_SRCS
+add_srcs(
 	cubeLightShadowMap.cpp
 	dualParaboloidLightShadowMap.cpp
 	lightShadowMap.cpp
@@ -10,7 +10,7 @@ set(TORQUE_LIGHTING_SHADOWMAP_SRCS
 	singleLightShadowMap.cpp
 )
 
-set(TORQUE_LIGHTING_SHADOWMAP_HEADERS
+add_headers(
 	cubeLightShadowMap.h
 	dualParaboloidLightShadowMap.h
 	lightShadowMap.h
@@ -21,8 +21,4 @@ set(TORQUE_LIGHTING_SHADOWMAP_HEADERS
 	shadowMapPass.h
 	shadowMatHook.h
 	singleLightShadowMap.h
-)
-
-add_library(${TORQUE_BUILD}_lighting_shadowMap STATIC
-	${TORQUE_LIGHTING_SHADOWMAP_SRCS} ${TORQUE_LIGHTING_SHADOWMAP_HEADERS}
 )

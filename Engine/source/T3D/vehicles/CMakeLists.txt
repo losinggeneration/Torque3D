@@ -1,4 +1,4 @@
-set(TORQUE_T3D_VEHICLES_SRCS
+add_srcs(
 	flyingVehicle.cpp
 	guiSpeedometer.cpp
 	hoverVehicle.cpp
@@ -7,12 +7,10 @@ set(TORQUE_T3D_VEHICLES_SRCS
 	wheeledVehicle.cpp
 )
 
-set(TORQUE_T3D_VEHICLES_HEADERS
+add_headers(
 	flyingVehicle.h
 	hoverVehicle.h
 	vehicle.h
 	vehicleBlocker.h
 	wheeledVehicle.h
 )
-
-add_library(${TORQUE_BUILD}_T3D_vehicles STATIC ${TORQUE_T3D_VEHICLES_SRCS} ${TORQUE_T3D_VEHICLES_HEADERS})

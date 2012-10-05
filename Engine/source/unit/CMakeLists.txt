@@ -1,4 +1,4 @@
-set(TORQUE_UNIT_SRCS
+add_srcs(
 	consoleTest.cpp
 	memoryTester.cpp
 	test.cpp
@@ -13,11 +13,8 @@ set(TORQUE_UNIT_SRCS
 	unitTestComponentInterface.cpp
 )
 
-set(TORQUE_UNIT_HEADERS
+add_headers(
 	memoryTester.h
 	test.h
 	unitTestComponentInterface.h
 )
-
-add_library(${TORQUE_BUILD}_unit STATIC ${TORQUE_UNIT_SRCS} ${TORQUE_UNIT_HEADERS})
-

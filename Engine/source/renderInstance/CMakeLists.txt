@@ -1,4 +1,4 @@
-set(TORQUE_RENDERINSTANCE_SRCS
+add_srcs(
 	forcedMaterialMeshMgr.cpp
 	renderBinManager.cpp
 	renderFormatChanger.cpp
@@ -16,7 +16,7 @@ set(TORQUE_RENDERINSTANCE_SRCS
 	renderTranslucentMgr.cpp
 )
 
-set(TORQUE_RENDERINSTANCE_HEADERS
+add_headers(
 	forcedMaterialMeshMgr.h
 	renderBinManager.h
 	renderFormatChanger.h
@@ -34,5 +34,5 @@ set(TORQUE_RENDERINSTANCE_HEADERS
 	renderTranslucentMgr.h
 )
 
-add_library(${TORQUE_BUILD}_renderInstance STATIC ${TORQUE_RENDERINSTANCE_SRCS} ${TORQUE_RENDERINSTANCE_HEADERS})
+
 

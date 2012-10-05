@@ -1,10 +1,7 @@
-set(TORQUE_PLATFORMPOSIX_SRCS
+add_srcs(
 	posixVolume.cpp
 )
 
-set(TORQUE_PLATFORMPOSIX_HEADERS
+add_headers(
 	posixVolume.h
 )
-
-add_library(${TORQUE_BUILD}_platformPOSIX STATIC ${TORQUE_PLATFORMPOSIX_SRCS} ${TORQUE_PLATFORMPOSIX_HEADERS})
-

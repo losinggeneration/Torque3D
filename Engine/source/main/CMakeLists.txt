@@ -1,4 +1,4 @@
-set(TORQUE_main_SRCS
+add_srcs(
 	main.cpp
 )
 

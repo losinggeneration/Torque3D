@@ -1,4 +1,4 @@
-set(TORQUE_T3D_FX_SRCS
+add_srcs(
 	cameraFXMgr.cpp
 	explosion.cpp
 	fxFoliageReplicator.cpp
@@ -13,7 +13,7 @@ set(TORQUE_T3D_FX_SRCS
 	windEmitter.cpp
 )
 
-set(TORQUE_T3D_FX_HEADERS
+add_headers(
 	cameraFXMgr.h
 	explosion.h
 	fxFoliageReplicator.h
@@ -27,5 +27,3 @@ set(TORQUE_T3D_FX_HEADERS
 	splash.h
 	windEmitter.h
 )
-
-add_library(${TORQUE_BUILD}_T3D_fx STATIC ${TORQUE_T3D_FX_SRCS} ${TORQUE_T3D_FX_HEADERS})

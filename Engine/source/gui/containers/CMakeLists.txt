@@ -1,4 +1,4 @@
-set(TORQUE_GUI_CONTAINERS_SRCS
+add_srcs(
 	guiAutoScrollCtrl.cpp
 	guiContainer.cpp
 	guiCtrlArrayCtrl.cpp
@@ -17,7 +17,7 @@ set(TORQUE_GUI_CONTAINERS_SRCS
 	guiWindowCtrl.cpp
 )
 
-set(TORQUE_GUI_CONTAINERS_HEADERS
+add_headers(
 	guiAutoScrollCtrl.h
 	guiContainer.h
 	guiCtrlArrayCtrl.h
@@ -36,4 +36,3 @@ set(TORQUE_GUI_CONTAINERS_HEADERS
 	guiWindowCtrl.h
 )
 
-add_library(${TORQUE_BUILD}_gui_containers STATIC ${TORQUE_GUI_CONTAINERS_SRCS} ${TORQUE_GUI_CONTAINERS_HEADERS})

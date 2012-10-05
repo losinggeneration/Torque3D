@@ -1,4 +1,4 @@
-set(TORQUE_GUI_GAME_SRCS
+add_srcs(
 	guiChunkedBitmapCtrl.cpp
 	guiFadeinBitmapCtrl.cpp
 	guiIdleCamFadeBitmapCtrl.cpp
@@ -7,11 +7,10 @@ set(TORQUE_GUI_GAME_SRCS
 	guiProgressCtrl.cpp
 )
 
-set(TORQUE_GUI_GAME_HEADERS
+add_headers(
 	guiFadeinBitmapCtrl.h
 	guiMessageVectorCtrl.h
 	guiProgressBitmapCtrl.h
 	guiProgressCtrl.h
 )
 
-add_library(${TORQUE_BUILD}_gui_game STATIC ${TORQUE_GUI_GAME_SRCS} ${TORQUE_GUI_GAME_HEADERS})

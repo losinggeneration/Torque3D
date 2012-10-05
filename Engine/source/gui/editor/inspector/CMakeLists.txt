@@ -1,4 +1,4 @@
-set(TORQUE_GUI_EDITOR_INSPECTOR_SRCS
+add_srcs(
 	customField.cpp
 	datablockField.cpp
 	dynamicField.cpp
@@ -10,7 +10,7 @@ set(TORQUE_GUI_EDITOR_INSPECTOR_SRCS
 	variableInspector.cpp
 )
 
-set(TORQUE_GUI_EDITOR_INSPECTOR_HEADERS
+add_headers(
 	customField.h
 	datablockField.h
 	dynamicField.h
@@ -22,6 +22,4 @@ set(TORQUE_GUI_EDITOR_INSPECTOR_HEADERS
 	variableInspector.h
 )
 
-add_subdirectory(inspector)
 
-add_library(${TORQUE_BUILD}_gui_editor_inspector STATIC ${TORQUE_GUI_EDITOR_INSPECTOR_SRCS} ${TORQUE_GUI_EDITOR_INSPECTOR_HEADERS})

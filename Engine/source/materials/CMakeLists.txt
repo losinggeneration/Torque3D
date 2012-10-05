@@ -1,4 +1,4 @@
-set(TORQUE_MATERIALS_SRCS
+add_srcs(
 	baseMatInstance.cpp
 	customMaterialDefinition.cpp
 	matInstance.cpp
@@ -18,7 +18,7 @@ set(TORQUE_MATERIALS_SRCS
 	shaderMaterialParameters.cpp
 )
 
-set(TORQUE_MATERIALS_HEADERS
+add_headers(
 	baseMatInstance.h
 	baseMaterialDefinition.h
 	customMaterialDefinition.h
@@ -42,5 +42,5 @@ set(TORQUE_MATERIALS_HEADERS
 	shaderMaterialParameters.h
 )
 
-add_library(${TORQUE_BUILD}_materials STATIC ${TORQUE_MATERIALS_SRCS} ${TORQUE_MATERIALS_HEADERS})
+
 

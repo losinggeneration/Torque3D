@@ -1,4 +1,4 @@
-set(TORQUE_T3D_GAMEBASE_SRCS
+add_srcs(
 	gameBase.cpp
 	gameConnection.cpp
 	gameConnectionEvents.cpp
@@ -10,28 +10,28 @@ set(TORQUE_T3D_GAMEBASE_SRCS
 )
 
 if(${TORQUE_GAMEBASE_STD})
-	set(TORQUE_T3D_GAMEBASE_IMPL_SRCS
+	add_srcs(
 		std/stdGameProcess.cpp
 		std/stdMoveList.cpp
 	)
 
-	set(TORQUE_T3D_GAMEBASE_IMPL_HEADERS
+	add_headers(
 		std/stdGameProcess.h
 		std/stdMoveList.h
 	)
 else()
-	set(TORQUE_T3D_GAMEBASE_IMPL_SRCS
+	add_srcs(
 		hifi/hifiGameProcess.cpp
 		hifi/hifiMoveList.cpp
 	)
 
-	set(TORQUE_T3D_GAMEBASE_IMPL_HEADERS
+	add_headers(
 		hifi/hifiGameProcess.h
 		hifi/hifiMoveList.h
 	)
 endif(${TORQUE_GAMEBASE_STD})
 
-set(TORQUE_T3D_GAMEBASE_HEADERS
+add_headers(
 	gameBase.h
 	gameConnection.h
 	gameConnectionEvents.h
@@ -40,9 +40,4 @@ set(TORQUE_T3D_GAMEBASE_HEADERS
 	moveManager.h
 	processList.h
 	tickCache.h
-)
-
-add_library(${TORQUE_BUILD}_T3D_gameBase STATIC
-	${TORQUE_T3D_GAMEBASE_SRCS} ${TORQUE_T3D_GAMEBASE_HEADERS}
-	${TORQUE_T3D_GAMEBASE_IMPL_SRCS} ${TORQUE_T3D_GAMEBASE_IMPL_HEADERS}
 )

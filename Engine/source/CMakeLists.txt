@@ -115,6 +115,45 @@ add_definitions(
 
 configure_file(cmake/torqueConfig.h.in torqueConfig.h)
 
+macro(add_srcs)
+	file(RELATIVE_PATH _relative_path "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
+
+	foreach(_srcs ${ARGN})
+		list(APPEND TORQUE_ENGINE_SRCS "${_relative_path}/${_srcs}")
+	endforeach()
+
+	if(_relative_path)
+		set(TORQUE_ENGINE_SRCS ${TORQUE_ENGINE_SRCS} PARENT_SCOPE)
+	endif()
+endmacro(add_srcs)
+
+macro(add_headers)
+	file(RELATIVE_PATH _relative_path "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
+
+	foreach(_headers ${ARGN})
+		list(APPEND TORQUE_ENGINE_HEADERS "${_relative_path}/${_headers}")
+	endforeach()
+
+	if(_relative_path)
+		set(TORQUE_ENGINE_HEADERS ${TORQUE_ENGINE_HEADERS} PARENT_SCOPE)
+	endif()
+endmacro(add_headers)
+
+macro(add_includes)
+	file(RELATIVE_PATH _relative_path "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
+
+	foreach(_includes ${ARGN})
+		list(APPEND TORQUE_ENGINE_INCLUDES "${_includes}")
+	endforeach()
+
+	if(_relative_path)
+		set(TORQUE_ENGINE_INCLUDES ${TORQUE_ENGINE_INCLUDES} PARENT_SCOPE)
+	endif()
+endmacro(add_includes)
+
+# Not 64 bit safe...
+enable_language(ASM_NASM)
+
 if(!${TORQUE_DEDICATED})
 	add_subdirectory(main)
 endif()
@@ -163,112 +202,35 @@ else()
 	message(FATAL_ERROR "Unknown Platform")
 endif(UNIX)
 
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/collada ${CMAKE_CURRENT_BINARY_DIR}/collada)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/opcode ${CMAKE_CURRENT_BINARY_DIR}/opcode)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/pcre ${CMAKE_CURRENT_BINARY_DIR}/pcre)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/lpng ${CMAKE_CURRENT_BINARY_DIR}/lpng)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/squish ${CMAKE_CURRENT_BINARY_DIR}/squish)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/tinyxml ${CMAKE_CURRENT_BINARY_DIR}/tinyxml)
 
-link_directories(
-	T3D
-	app
-	cinterface
-	collision
-	component
-	console
-	core
-	environment
-	forest
-	gfx
-	gui
-	i18n
-	interior
-	lighting
-	main
-	materials
-	math
-	platform
-	postFx
-	renderInstance
-	scene
-	sfx
-	shaderGen
-	sim
-	terrain
-	ts
-	unit
-	util
-	windowManager
+include_directories(
+	${TORQUE_ENGINE_INCLUDES}
 )
+
+add_library(${TORQUE_BUILD}_engine STATIC ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 
 if(${TORQUE_DEDICATED})
 	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp)
 else()
 	file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/lib.cpp)
-	add_library(${TORQUE_BUILD_TARGET} SHARED ${CMAKE_CURRENT_BINARY_DIR}/lib.cpp)
-endif()
 
-if(UNIX)
-	link_directories(
-		platformPOSIX
-		platformX86UNIX
-	)
-
-	set(TORQUE_PLATFORM_LIBS
-		${TORQUE_BUILD}_platformX86UNIX
-		${TORQUE_BUILD}_platformPOSIX
-		${SDL_LIBRARY}
-		SDL
-	)
-elseif(APPLE)
-	link_directories(
-		platformMac
-	)
-
-	target_link_libraries(${TORQUE_BUILD}
-		${TORQUE_BUILD}_platformMac
-	)
-elseif(WIN32)
-	link_directories(
-		platformWin32
-	)
-
-	target_link_libraries(${TORQUE_BUILD_TARGET}
-		${TORQUE_BUILD}_platformWin32
-	)
 endif()
 
 target_link_libraries(${TORQUE_BUILD_TARGET}
-	${TORQUE_BUILD}_T3D
-	${TORQUE_BUILD}_collision
-	${TORQUE_BUILD}_component
-	${TORQUE_BUILD}_gui
-	${TORQUE_BUILD}_app
-	${TORQUE_BUILD}_console
-	${TORQUE_BUILD}_util
-	${TORQUE_PLATFORM_LIBS}
-	${TORQUE_BUILD}_gfx
-	${TORQUE_BUILD}_app
-	${TORQUE_BUILD}_sfx
-	${TORQUE_BUILD}_sfx_media
-	${TORQUE_BUILD}_math
-	${TORQUE_BUILD}_cinterface
-	${TORQUE_BUILD}_console
-	${TORQUE_BUILD}_T3D
-	${TORQUE_BUILD}_enviornment
-	${TORQUE_BUILD}_forest
-	${TORQUE_BUILD}_i18n
-	${TORQUE_BUILD}_interior
-	${TORQUE_BUILD}_lighting
-	${TORQUE_BUILD}_materials
-	${TORQUE_BUILD}_platform
-	${TORQUE_BUILD}_sim
-	${TORQUE_BUILD}_core
-	${TORQUE_BUILD}_postFx
-	${TORQUE_BUILD}_renderInstance
-	${TORQUE_BUILD}_scene
-	${TORQUE_BUILD}_shaderGen
-	${TORQUE_BUILD}_terrain
-	${TORQUE_BUILD}_ts
-	${TORQUE_BUILD}_unit
-	${TORQUE_BUILD}_windowManager
+	${TORQUE_BUILD}_engine
+	collada
+	opcode
+	pcre
+	png
 	squish
+	tinyxml
 	z
 	vorbisfile
+	${SDL_LIBRARY}
 )

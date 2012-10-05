@@ -1,4 +1,4 @@
-set(TORQUE_GUI_WORLDEDITOR_SRCS
+add_srcs(
 	creator.cpp
 	editor.cpp
 	editorIconRegistry.cpp
@@ -17,7 +17,7 @@ set(TORQUE_GUI_WORLDEDITOR_SRCS
 	worldEditorSelection.cpp
 )
 
-set(TORQUE_GUI_WORLDEDITOR_HEADERS
+add_headers(
 	creator.h
 	editor.h
 	editorIconRegistry.h
@@ -36,10 +36,8 @@ set(TORQUE_GUI_WORLDEDITOR_HEADERS
 	worldEditorSelection.h
 )
 
-include_directories(
+add_includes(
 	${CMAKE_SOURCE_DIR}/../lib/tinyxml
 	${CMAKE_SOURCE_DIR}/../lib/collada/include
 	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
 )
-
-add_library(${TORQUE_BUILD}_gui_worldEditor STATIC ${TORQUE_GUI_WORLDEDITOR_SRCS} ${TORQUE_GUI_WORLDEDITOR_HEADERS})

@@ -1,4 +1,4 @@
-set(TORQUE_SCENE_SRCS
+add_srcs(
 	culling/sceneCullingState.cpp
 	culling/sceneCullingVolume.cpp
 	culling/sceneZoneCullingState.cpp
@@ -24,7 +24,7 @@ set(TORQUE_SCENE_SRCS
 	zones/sceneZoneSpaceManager.cpp
 )
 
-set(TORQUE_SCENE_HEADERS
+add_headers(
 	culling/sceneCullingState.h
 	culling/sceneCullingVolume.h
 	culling/sceneZoneCullingState.h
@@ -56,5 +56,5 @@ set(TORQUE_SCENE_HEADERS
 	zones/sceneZoneSpaceManager.h
 )
 
-add_library(${TORQUE_BUILD}_scene STATIC ${TORQUE_SCENE_SRCS} ${TORQUE_SCENE_HEADERS})
+
 

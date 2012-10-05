@@ -1,4 +1,4 @@
-set(TORQUE_MATH_SRCS
+add_srcs(
 	mAngAxis.cpp
 	mBox.cpp
 	mConsoleFunctions.cpp
@@ -31,7 +31,7 @@ set(TORQUE_MATH_SRCS
 	util/tResponseCurve.cpp
 )
 
-set(TORQUE_MATH_HEADERS
+add_headers(
 	mAngAxis.h
 	mBox.h
 	mBoxBase.h
@@ -71,14 +71,8 @@ set(TORQUE_MATH_HEADERS
 	util/tResponseCurve.h
 )
 
-# Not 64 bit safe...
-enable_language(ASM_NASM)
-
-set(TORQUE_MATH_ASM
+add_srcs(
 	mMathAMD_ASM.asm
 	mMathSSE_ASM.asm
 	mMath_ASM.asm
 )
-
-add_library(${TORQUE_BUILD}_math STATIC ${TORQUE_MATH_SRCS} ${TORQUE_MATH_HEADERS} ${TORQUE_MATH_ASM})
-

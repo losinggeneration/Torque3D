@@ -1,4 +1,4 @@
-set(TORQUE_GUI_BUTTONS_SRCS
+add_srcs(
 	guiBitmapButtonCtrl.cpp
 	guiBorderButton.cpp
 	guiButtonBaseCtrl.cpp
@@ -11,7 +11,7 @@ set(TORQUE_GUI_BUTTONS_SRCS
 	guiToolboxButtonCtrl.cpp
 )
 
-set(TORQUE_GUI_BUTTONS_HEADERS
+add_headers(
 	guiBitmapButtonCtrl.h
 	guiButtonBaseCtrl.h
 	guiButtonCtrl.h
@@ -23,4 +23,3 @@ set(TORQUE_GUI_BUTTONS_HEADERS
 	guiToolboxButtonCtrl.h
 )
 
-add_library(${TORQUE_BUILD}_gui_buttons STATIC ${TORQUE_GUI_BUTTONS_SRCS} ${TORQUE_GUI_BUTTONS_HEADERS})

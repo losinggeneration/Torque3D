@@ -1,4 +1,22 @@
-set(TORQUE_SFX_SRCS
+if(${TORQUE_DEDICATED})
+	set(TORQUE_USE_SFX_NULL 1)
+endif()
+
+if(TORQUE_USE_SFX_NULL)
+	add_subdirectory(null)
+elseif(TORQUE_USE_SFX_DSOUND)
+	add_subdirectory(dsound)
+elseif(TORQUE_USE_SFX_FMOD)
+	add_subdirectory(fmod)
+elseif(TORQUE_USE_SFX_OPENAL)
+	add_subdirectory(openal)
+elseif(TORQUE_USE_SFX_XAUDIO)
+	add_subdirectory(xaudio)
+endif()
+
+add_subdirectory(media)
+
+add_srcs(
 	sfxAmbience.cpp
 	sfxBuffer.cpp
 	sfxController.cpp
@@ -24,7 +42,7 @@ set(TORQUE_SFX_SRCS
 	sfxVoice.cpp
 )
 
-set(TORQUE_SFX_HEADERS
+add_headers(
 	sfxBuffer.h
 	sfxCommon.h
 	sfxController.h
@@ -51,33 +69,3 @@ set(TORQUE_SFX_HEADERS
 	sfxVoice.h
 	sfxWorld.h
 )
-
-if(${TORQUE_DEDICATED})
-	set(TORQUE_USE_SFX_NULL 1)
-endif()
-
-if(TORQUE_USE_SFX_NULL)
-	add_subdirectory(null)
-	set(TORQUE_SFX_BACKEND null/${TORQUE_BUILD}_sfx_null)
-elseif(TORQUE_USE_SFX_DSOUND)
-	add_subdirectory(dsound)
-	set(TORQUE_SFX_BACKEND null/${TORQUE_BUILD}_sfx_dsound)
-elseif(TORQUE_USE_SFX_FMOD)
-	add_subdirectory(fmod)
-	set(TORQUE_SFX_BACKEND null/${TORQUE_BUILD}_sfx_fmod)
-elseif(TORQUE_USE_SFX_OPENAL)
-	add_subdirectory(openal)
-	set(TORQUE_SFX_BACKEND null/${TORQUE_BUILD}_sfx_openal)
-elseif(TORQUE_USE_SFX_XAUDIO)
-	add_subdirectory(xaudio)
-	set(TORQUE_SFX_BACKEND null/${TORQUE_BUILD}_sfx_xaudio)
-endif()
-
-add_subdirectory(media)
-
-add_library(${TORQUE_BUILD}_sfx STATIC ${TORQUE_SFX_SRCS} ${TORQUE_SFX_HEADERS})
-target_link_libraries(${TORQUE_BUILD}_sfx LINK_INTERFACE_LIBRARIES
-	media/${TORQUE_BUILD}_sfx_media
-	${TORQUE_SFX_BACKEND}
-)
-

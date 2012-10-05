@@ -1,16 +1,16 @@
-set(TORQUE_SFX_XAUDIO_SRCS
+add_srcs(
 	sfxXAudioBuffer.cpp
 	sfxXAudioDevice.cpp
 	sfxXAudioProvider.cpp
 	sfxXAudioVoice.cpp
 )
 
-set(TORQUE_SFX_XAUDIO_HEADERS
+add_headers(
 	sfxXAudioBuffer.h
 	sfxXAudioDevice.h
 	sfxXAudioVoice.h
 )
 
-add_library(${TORQUE_BUILD}_sfx_xaudio STATIC
+
 	${TORQUE_SFX_XAUDIO_SRCS} ${TORQUE_SFX_XAUDIO_HEADERS}
 )

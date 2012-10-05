@@ -1,4 +1,4 @@
-set(TORQUE_PLATFORMWIN32_SRCS
+add_srcs(
 	cardProfile.cpp
 	menus/menuBarWin32.cpp
 	menus/popupMenuWin32.cpp
@@ -35,7 +35,7 @@ set(TORQUE_PLATFORMWIN32_SRCS
 	winWindow.cpp
 )
 
-set(TORQUE_PLATFORMWIN32_HEADERS
+add_headers(
 	VFSRes.h
 	minidump/winStackWalker.h
 	platformWin32.h
@@ -50,5 +50,5 @@ set(TORQUE_PLATFORMWIN32_HEADERS
 	win_release_prefix.h
 )
 
-add_library(${TORQUE_BUILD}_platformWin32 STATIC ${TORQUE_PLATFORMWIN32_SRCS} ${TORQUE_PLATFORMWIN32_HEADERS})
+
 

@@ -1,4 +1,4 @@
-set(TORQUE_PLATFORMX86UNIX_SRCS
+add_srcs(
 	threads/mutex.cpp
 	threads/semaphore.cpp
 	threads/thread.cpp
@@ -19,9 +19,7 @@ set(TORQUE_PLATFORMX86UNIX_SRCS
 	x86UNIXUtils.cpp
 )
 
-set(TORQUE_PLATFORMX86UNIX_HEADERS
-	gl_types.h
-	platformAL.h
+add_headers(
 	platformX86UNIX.h
 	x86UNIXMessageBox.h
 	x86UNIXState.h
@@ -30,12 +28,12 @@ set(TORQUE_PLATFORMX86UNIX_HEADERS
 )
 
 if(${TORQUE_DEDICATED})
-	set(TORQUE_PLATFORMX86UNIX_PLATFORM_SRCS
+	add_srcs(
 		x86UNIXStub.dedicated.cpp
 	)
 else()
 	# Client
-	set(TORQUE_PLATFORMX86UNIX_PLATFORM_SRCS
+	add_srcs(
 		x86UNIXFont.client.cpp
 		x86UNIXGL.client.cpp
 		x86UNIXInput.client.cpp
@@ -46,7 +44,9 @@ else()
 		x86UNIXWindow.client.cpp
 	)
 
-	set(TORQUE_PLATFORMX86UNIX_PLATFORM_HEADERS
+	add_headers(
+		gl_types.h
+		platformAL.h
 		x86UNIXFont.h
 		x86UNIXInputManager.h
 		x86UNIXOGLVideo.h
@@ -55,12 +55,11 @@ else()
 	# Clients require freetype
 	find_package(Freetype REQUIRED)
 
-	include_directories(
+	add_includes(
 		${FREETYPE_INCLUDE_DIRS}
 	)
-endif()
 
-add_library(${TORQUE_BUILD}_platformX86UNIX STATIC
-	${TORQUE_PLATFORMX86UNIX_SRCS} ${TORQUE_PLATFORMX86UNIX_HEADERS}
-	${TORQUE_PLATFORMX86UNIX_PLATFORM_SRCS} ${TORQUE_PLATFORMX86UNIX_PLATFORM_HEADERS}
-)
+	add_libraries(
+		${FREETYPE_LIBS}
+	)
+endif()

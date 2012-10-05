@@ -1,4 +1,4 @@
-set(TORQUE_CONSOLE_SRCS
+add_srcs(
 	CMDscan.cpp
 	SimXMLDocument.cpp
 	arrayObject.cpp
@@ -30,8 +30,7 @@ set(TORQUE_CONSOLE_SRCS
 	engineXMLExport.cpp
 	fieldBrushObject.cpp
 	fileSystemFunctions.cpp
-### FIXME: Figure out why this doesn't work
-	#persistenceManager.cpp
+	persistenceManager.cpp
 	propertyParsing.cpp
 	runtimeClassRep.cpp
 	scriptFilename.cpp
@@ -55,7 +54,7 @@ set(TORQUE_CONSOLE_SRCS
 	typeValidators.cpp
 )
 
-set(TORQUE_CONSOLE_HEADERS
+add_headers(
 	ICallMethod.h
 	SimXMLDocument.h
 	arrayObject.h
@@ -106,11 +105,7 @@ set(TORQUE_CONSOLE_HEADERS
 	typeValidators.h
 )
 
-include_directories(
-	${CMAKE_SOURCE_DIR}/../lib
-	${CMAKE_SOURCE_DIR}/../lib/collada/include
-	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
+add_includes(
+	${CMAKE_SOURCE_DIR}/../lib/tinyxml
 )
-
-add_library(${TORQUE_BUILD}_console STATIC ${TORQUE_CONSOLE_SRCS} ${TORQUE_CONSOLE_HEADERS})
 

@@ -1,4 +1,4 @@
-set(TORQUE_LIGHTING_COMMON_SRCS
+add_srcs(
 	blobShadow.cpp
 	lightMapParams.cpp
 	projectedShadow.cpp
@@ -7,7 +7,7 @@ set(TORQUE_LIGHTING_COMMON_SRCS
 	shadowVolumeBSP.cpp
 )
 
-set(TORQUE_LIGHTING_COMMON_HEADERS
+add_headers(
 	blobShadow.h
 	lightMapParams.h
 	projectedShadow.h
@@ -16,8 +16,4 @@ set(TORQUE_LIGHTING_COMMON_HEADERS
 	scenePersist.h
 	shadowBase.h
 	shadowVolumeBSP.h
-)
-
-add_library(${TORQUE_BUILD}_lighting_common STATIC
-	${TORQUE_LIGHTING_COMMON_SRCS} ${TORQUE_LIGHTING_COMMON_HEADERS}
 )

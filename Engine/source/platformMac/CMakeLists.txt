@@ -1,4 +1,4 @@
-set(TORQUE_PLATFORMMAC_SRCS
+add_srcs(
 	macCarbAsync.cpp
 	macCarbCPUInfo.cpp
 	macCarbFont.cpp
@@ -18,7 +18,7 @@ set(TORQUE_PLATFORMMAC_SRCS
 	menus/popupMenu.cpp
 )
 
-set(TORQUE_PLATFORMMAC_HEADERS
+add_headers(
 	macApplication.h
 	macCarbFont.h
 	macCarbVolume.h
@@ -26,5 +26,5 @@ set(TORQUE_PLATFORMMAC_HEADERS
 	platformMacCarb.h
 )
 
-add_library(${TORQUE_BUILD}_platformMac STATIC ${TORQUE_PLATFORMMAC_SRCS} ${TORQUE_PLATFORMMAC_HEADERS})
+
 

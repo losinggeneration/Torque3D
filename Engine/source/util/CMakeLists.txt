@@ -1,4 +1,4 @@
-set(TORQUE_UTIL_SRCS
+add_srcs(
 	catmullRom.cpp
 	fpsTracker.cpp
 	imposterCapture.cpp
@@ -17,7 +17,7 @@ set(TORQUE_UTIL_SRCS
 	undo.cpp
 )
 
-set(TORQUE_UTIL_HEADERS
+add_headers(
 	catmullRom.h
 	fpsTracker.h
 	imposterCapture.h
@@ -39,6 +39,3 @@ set(TORQUE_UTIL_HEADERS
 	triRayCheck.h
 	undo.h
 )
-
-add_library(${TORQUE_BUILD}_util STATIC ${TORQUE_UTIL_SRCS} ${TORQUE_UTIL_HEADERS})
-

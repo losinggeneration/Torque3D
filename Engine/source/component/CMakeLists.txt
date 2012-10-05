@@ -1,11 +1,12 @@
-set(TORQUE_COMPONENT_SRCS
+add_srcs(
 	componentInterface.cpp
 	dynamicConsoleMethodComponent.cpp
 	moreAdvancedComponent.cpp
 	simComponent.cpp
 	simpleComponent.cpp
 )
-set(TORQUE_COMPONENT_HEADERS
+
+add_headers(
 	componentInterface.h
 	dynamicConsoleMethodComponent.h
 	interfaces/IProcessInput.h
@@ -13,6 +14,3 @@ set(TORQUE_COMPONENT_HEADERS
 	simComponent.h
 	simpleComponent.h
 )
-
-add_library(${TORQUE_BUILD}_component STATIC ${TORQUE_COMPONENT_SRCS} ${TORQUE_COMPONENT_HEADERS})
-

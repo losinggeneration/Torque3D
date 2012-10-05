@@ -1,4 +1,4 @@
-set(TORQUE_SFX_OPENAL_SRCS
+add_srcs(
 	aldlist.cpp
 	sfxALBuffer.cpp
 	sfxALDevice.cpp
@@ -6,7 +6,7 @@ set(TORQUE_SFX_OPENAL_SRCS
 	sfxALVoice.cpp
 )
 
-set(TORQUE_SFX_OPENAL_HEADERS
+add_headers(
 	LoadOAL.h
 	aldlist.h
 	sfxALBuffer.h
@@ -16,17 +16,17 @@ set(TORQUE_SFX_OPENAL_HEADERS
 )
 
 if(WIN32)
-	set(TORQUE_SFX_OPENAL_PLATFORM_SRCS
+	add_srcs(
 		win32/LoadOAL.cpp
 	)
 elseif(APPLE)
-	set(TORQUE_SFX_OPENAL_PLATFORM_SRCS
+	add_srcs(
 		mac/LoadOAL.mac.cpp
 	)
 else() # UNIX?
 endif()
 
-add_library(${TORQUE_BUILD}_sfx_openal STATIC
+
 	${TORQUE_SFX_OPENAL_SRCS} ${TORQUE_SFX_OPENAL_HEADERS}
 	${TORQUE_SFX_OPENAL_PLATFORM_SRCS}
 )

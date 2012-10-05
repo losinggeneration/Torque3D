@@ -1,4 +1,4 @@
-set(TORQUE_ENVIRONMENT_SRCS
+add_srcs(
 	basicClouds.cpp
 	cloudLayer.cpp
 	decalRoad.cpp
@@ -17,7 +17,7 @@ set(TORQUE_ENVIRONMENT_SRCS
 	waterPlane.cpp
 )
 
-set(TORQUE_ENVIRONMENT_HEADERS
+add_headers(
 	basicClouds.h
 	cloudLayer.h
 	decalRoad.h
@@ -35,5 +35,3 @@ set(TORQUE_ENVIRONMENT_HEADERS
 	waterObject.h
 	waterPlane.h
 )
-
-add_library(${TORQUE_BUILD}_enviornment STATIC ${TORQUE_ENVIRONMENT_SRCS} ${TORQUE_ENVIRONMENT_HEADERS})

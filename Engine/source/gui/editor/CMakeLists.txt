@@ -1,4 +1,4 @@
-set(TORQUE_GUI_EDITOR_SRCS
+add_srcs(
 	editorFunctions.cpp
 	guiDebugger.cpp
 	guiEaseViewCtrl.cpp
@@ -15,7 +15,7 @@ set(TORQUE_GUI_EDITOR_SRCS
 	guiShapeEdPreview.cpp
 )
 
-set(TORQUE_GUI_EDITOR_HEADERS
+add_headers(
 	editorFunctions.h
 	guiDebugger.h
 	guiEaseViewCtrl.h
@@ -32,10 +32,10 @@ set(TORQUE_GUI_EDITOR_HEADERS
 	guiShapeEdPreview.h
 )
 
-include_directories(
+add_includes(
 	${CMAKE_SOURCE_DIR}/../lib/tinyxml
 	${CMAKE_SOURCE_DIR}/../lib/collada/include
 	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
 )
 
-add_library(${TORQUE_BUILD}_gui_editor STATIC ${TORQUE_GUI_EDITOR_SRCS} ${TORQUE_GUI_EDITOR_HEADERS})
+add_subdirectory(inspector)

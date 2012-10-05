@@ -1,4 +1,4 @@
-set(TORQUE_PLATFORM_SRCS
+add_srcs(
 	async/asyncUpdate.cpp
 	platform.cpp
 	platformAssert.cpp
@@ -18,7 +18,7 @@ set(TORQUE_PLATFORM_SRCS
 	threads/threadPool.cpp
 )
 
-set(TORQUE_PLATFORM_HEADERS
+add_headers(
 	async/asyncBufferedStream.h
 	async/asyncPacketQueue.h
 	async/asyncPacketStream.h
@@ -72,7 +72,7 @@ set(TORQUE_PLATFORM_HEADERS
 )
 
 if(!${TORQUE_DEDICATED})
-	set(TORQUE_PLATFORM_CLIENT_SRCS
+	add_srcs(
 		menus/menuBar.cpp
 		menus/popupMenu.cpp
 		nativeDialogs/msgBox.cpp
@@ -89,7 +89,7 @@ if(!${TORQUE_DEDICATED})
 		test/testTimeManager.cpp
 	)
 
-	set(TORQUE_PLATFORM_CLIENT_HEADERS
+	add_headers(
 		menus/menuBar.h
 		menus/popupMenu.h
 		nativeDialogs/fileDialog.h
@@ -97,19 +97,6 @@ if(!${TORQUE_DEDICATED})
 	)
 endif()
 
-include_directories(
-	${CMAKE_SOURCE_DIR}/../lib/tinyxml
-)
-
-# Not 64 bit safe...
-enable_language(ASM_NASM)
-
-set(TORQUE_PLATFORM_ASM
+add_srcs(
 	platformCPUInfo.asm
 )
-
-add_library(${TORQUE_BUILD}_platform STATIC
-	${TORQUE_PLATFORM_SRCS} ${TORQUE_PLATFORM_HEADERS} ${TORQUE_PLATFORM_ASM}
-	${TORQUE_PLATFORM_CLIENT_SRCS} ${TORQUE_PLATFORM_CLIENT_HEADERS}
-)
-

@@ -1,4 +1,4 @@
-set(TORQUE_SFX_FMOD_SRCS
+add_srcs(
 	sfxFMODBuffer.cpp
 	sfxFMODDevice.cpp
 	sfxFMODEvent.cpp
@@ -10,7 +10,7 @@ set(TORQUE_SFX_FMOD_SRCS
 	sfxFMODVoice.cpp
 )
 
-set(TORQUE_SFX_FMOD_HEADERS
+add_headers(
 	fmodErrors.h
 	fmodFunctions.h
 	sfxFMODBuffer.h
@@ -23,6 +23,6 @@ set(TORQUE_SFX_FMOD_HEADERS
 	sfxFMODVoice.h
 )
 
-add_library(${TORQUE_BUILD}_sfx_fmod STATIC
+
 	${TORQUE_SFX_FMOD_SRCS} ${TORQUE_SFX_FMOD_HEADERS}
 )

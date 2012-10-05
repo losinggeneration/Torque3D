@@ -1,4 +1,4 @@
-set(TORQUE_GUI_CORE_SRCS
+add_srcs(
 	guiArrayCtrl.cpp
 	guiCanvas.cpp
 	guiControl.cpp
@@ -7,7 +7,7 @@ set(TORQUE_GUI_CORE_SRCS
 	guiTypes.cpp
 )
 
-set(TORQUE_GUI_CORE_HEADERS
+add_headers(
 	guiArrayCtrl.h
 	guiCanvas.h
 	guiControl.h
@@ -16,4 +16,3 @@ set(TORQUE_GUI_CORE_HEADERS
 	guiTypes.h
 )
 
-add_library(${TORQUE_BUILD}_gui_core STATIC ${TORQUE_GUI_CORE_SRCS} ${TORQUE_GUI_CORE_HEADERS})

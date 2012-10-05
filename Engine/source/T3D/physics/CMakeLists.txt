@@ -1,4 +1,4 @@
-set(TORQUE_PHYSICS_CORE_SRCS
+add_srcs(
 	physicsBody.cpp
 	physicsDebris.cpp
 	physicsEvents.cpp
@@ -11,7 +11,7 @@ set(TORQUE_PHYSICS_CORE_SRCS
 	physicsWorld.cpp
 )
 
-set(TORQUE_PHYSICS_CORE_HEADERS
+add_headers(
 	physicsBody.h
 	physicsCollision.h
 	physicsCommon.h
@@ -27,7 +27,7 @@ set(TORQUE_PHYSICS_CORE_HEADERS
 )
 
 if(${TORQUE_PHYSICS_BULLET})
-	set(TORQUE_PHYSICS_BACKEND_SRCS
+	add_srcs(
 		bullet/btBody.cpp
 		bullet/btCollision.cpp
 		bullet/btDebugDraw.cpp
@@ -35,7 +35,7 @@ if(${TORQUE_PHYSICS_BULLET})
 		bullet/btPlugin.cpp
 		bullet/btWorld.cpp
 	)
-	set(TORQUE_PHYSICS_BACKEND_HEADERS
+	add_headers(
 		bullet/bt.h
 		bullet/btBody.h
 		bullet/btCasts.h
@@ -48,7 +48,7 @@ if(${TORQUE_PHYSICS_BULLET})
 
 	include_directories(${CMAKE_SOURCE_DIR}/../lib/bullet/src)
 elseif(${TORQUE_PHYSICS_PHYSX})
-	set(TORQUE_PHYSICS_BACKEND_SRCS
+	add_srcs(
 		physx/pxBody.cpp
 		physx/pxCloth.cpp
 		physx/pxCollision.cpp
@@ -63,7 +63,7 @@ elseif(${TORQUE_PHYSICS_PHYSX})
 		physx/pxWorld.cpp
 	)
 
-	set(TORQUE_PHYSICS_BACKEND_HEADERS
+	add_headers(
 		physx/px.h
 		physx/pxBody.h
 		physx/pxCasts.h
@@ -80,8 +80,3 @@ elseif(${TORQUE_PHYSICS_PHYSX})
 		physx/pxWorld.h
 	)
 endif(${TORQUE_PHYSICS_BULLET})
-
-add_library(${TORQUE_BUILD}_T3D_physics STATIC
-	${TORQUE_PHYSICS_CORE_SRCS} ${TORQUE_PHYSICS_CORE_HEADERS}
-	${TORQUE_PHYSICS_BACKEND_SRCS} ${TORQUE_PHYSICS_BACKEND_HEADERS}
-)

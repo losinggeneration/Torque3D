@@ -1,13 +1,9 @@
-set(TORQUE_SFX_MEDIA_SRCS
+add_srcs(
 	sfxVorbisStream.cpp
 	sfxWavStream.cpp
 )
 
-set(TORQUE_SFX_MEDIA_HEADERS
+add_headers(
 	sfxVorbisStream.h
 	sfxWavStream.h
-)
-
-add_library(${TORQUE_BUILD}_sfx_media STATIC
-	${TORQUE_SFX_MEDIA_SRCS} ${TORQUE_SFX_MEDIA_HEADERS}
 )

@@ -1,4 +1,4 @@
-set(TORQUE_SIM_SRCS
+add_srcs(
 	actionMap.cpp
 	connectionStringTable.cpp
 	netConnection.cpp
@@ -10,7 +10,7 @@ set(TORQUE_SIM_SRCS
 	netStringTable.cpp
 )
 
-set(TORQUE_SIM_HEADERS
+add_headers(
 	actionMap.h
 	connectionStringTable.h
 	netConnection.h
@@ -19,5 +19,5 @@ set(TORQUE_SIM_HEADERS
 	netStringTable.h
 )
 
-add_library(${TORQUE_BUILD}_sim STATIC ${TORQUE_SIM_SRCS} ${TORQUE_SIM_HEADERS})
+
 

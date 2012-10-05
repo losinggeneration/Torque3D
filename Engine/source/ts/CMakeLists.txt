@@ -1,4 +1,4 @@
-set(TORQUE_TS_SRCS
+add_srcs(
 	arch/tsMeshIntrinsics.sse.cpp
 	arch/tsMeshIntrinsics.sse4.cpp
 	collada/colladaAppMaterial.cpp
@@ -37,7 +37,7 @@ set(TORQUE_TS_SRCS
 	tsTransform.cpp
 )
 
-set(TORQUE_TS_HEADERS
+add_headers(
 	arch/tsMeshIntrinsics.arch.h
 	collada/colladaAppMaterial.h
 	collada/colladaAppMesh.h
@@ -68,12 +68,8 @@ set(TORQUE_TS_HEADERS
 	tsTransform.h
 )
 
-# If split up, likely only needed for the subdirectory collada
-include_directories(
+add_includes(
 	${CMAKE_SOURCE_DIR}/../lib/tinyxml
 	${CMAKE_SOURCE_DIR}/../lib/collada/include
 	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
 )
-
-add_library(${TORQUE_BUILD}_ts STATIC ${TORQUE_TS_SRCS} ${TORQUE_TS_HEADERS})
-
