@@ -92,27 +92,6 @@ set(TORQUE_DISABLE_MEMORY_MANAGER TRUE)
 set(TORQUE_DISABLE_VIRTUAL_MOUNT_SYSTEM FALSE)
 set(TORQUE_DISABLE_FIND_ROOT_WITHIN_ZIP FALSE)
 
-if(${UNIX})
-	add_definitions(-DLINUX)
-endif(${UNIX})
-
-# Some generic options to include by default for now
-add_definitions(
-	-DUNICODE
-	-DTORQUE_SHADERGEN
-	-DTORQUE_UNICODE
-	-DBAN_OPCODE_AUTOLINK
-	-DICE_NO_DLL
-	-DTORQUE_OPCODE
-	-DTORQUE_ADVANCED_LIGHTING
-	-DTORQUE_BASIC_LIGHTING
-	-DTORQUE_OGGVORBIS
-	-DTORQUE_OGGTHEORA
-	-DTORQUE_COLLADA
-	-DDOM_INCLUDE_TINYXML
-	-DPCRE_STATIC
-)
-
 configure_file(cmake/torqueConfig.h.in torqueConfig.h)
 
 macro(add_srcs)
@@ -154,6 +133,45 @@ endmacro(add_includes)
 # Not 64 bit safe...
 enable_language(ASM_NASM)
 
+# Some generic options to include by default for now
+add_definitions(
+	-DUNICODE
+	-DTORQUE_SHADERGEN
+	-DTORQUE_UNICODE
+	-DBAN_OPCODE_AUTOLINK
+	-DICE_NO_DLL
+	-DTORQUE_OPCODE
+	-DTORQUE_ADVANCED_LIGHTING
+	-DTORQUE_BASIC_LIGHTING
+	-DTORQUE_OGGVORBIS
+	-DTORQUE_OGGTHEORA
+	-DTORQUE_COLLADA
+	-DDOM_INCLUDE_TINYXML
+	-DPCRE_STATIC
+)
+
+
+if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmmx -msse")
+endif()
+
+if(UNIX)
+	add_definitions(-DLINUX)
+
+	find_package(SDL REQUIRED)
+	include_directories(${SDL_INCLUDE_DIRS})
+
+	add_subdirectory(platformPOSIX)
+	add_subdirectory(platformX86UNIX)
+elseif(APPLE)
+	add_subdirectory(platformPOSIX)
+	add_subdirectory(platformMac)
+elseif(WIN32)
+	add_subdirectory(platformWin32)
+else()
+	message(FATAL_ERROR "Unknown Platform")
+endif(UNIX)
+
 if(!${TORQUE_DEDICATED})
 	add_subdirectory(main)
 endif()
@@ -186,21 +204,6 @@ add_subdirectory(ts)
 add_subdirectory(unit)
 add_subdirectory(util)
 add_subdirectory(windowManager)
-
-if(UNIX)
-	find_library(SDL REQUIRED)
-	include_directories(${SDL_INCLUDE_DIRS})
-
-	add_subdirectory(platformPOSIX)
-	add_subdirectory(platformX86UNIX)
-elseif(APPLE)
-	add_subdirectory(platformPOSIX)
-	add_subdirectory(platformMac)
-elseif(WIN32)
-	add_subdirectory(platformWin32)
-else()
-	message(FATAL_ERROR "Unknown Platform")
-endif(UNIX)
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/collada ${CMAKE_CURRENT_BINARY_DIR}/collada)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/opcode ${CMAKE_CURRENT_BINARY_DIR}/opcode)

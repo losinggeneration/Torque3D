@@ -427,6 +427,7 @@ set(COLLADA_HEADERS
 include_directories(
 	include
 	include/1.4
+	${CMAKE_CURRENT_SOURCE_DIR}/../tinyxml
 )
 
 add_library(collada STATIC ${COLLADA_SRCS} ${COLLADA_HEADERS})
