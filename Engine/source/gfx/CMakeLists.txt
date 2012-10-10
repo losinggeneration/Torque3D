@@ -55,7 +55,6 @@ else()
 		gl/gfxGLCardProfiler.cpp
 		gl/gfxGLCubemap.cpp
 		gl/gfxGLDevice.cpp
-		gl/gfxGLDevice.win.cpp
 		gl/gfxGLEnumTranslate.cpp
 		gl/gfxGLOcclusionQuery.cpp
 		gl/gfxGLPrimitiveBuffer.cpp
@@ -68,10 +67,6 @@ else()
 		gl/gfxGLWindowTarget.cpp
 		gl/ggl/generator/parse.cpp
 		gl/ggl/ggl.cpp
-		gl/ggl/mac/aglBind.cpp
-		gl/ggl/win32/wglBind.cpp
-		gl/ggl/x11/glx.cpp
-		gl/ggl/x11/glxBind.cpp
 	)
 
 	add_headers(
@@ -102,10 +97,33 @@ else()
 		gl/ggl/generated/wglfn.h
 		gl/ggl/ggl.h
 		gl/ggl/gglConfig.h
-		gl/ggl/mac/agl.h
-		gl/ggl/win32/wgl.h
-		gl/ggl/x11/glx.h
 	)
+
+	if(UNIX)
+		add_srcs(
+			gl/ggl/x11/glx.cpp
+			gl/ggl/x11/glxBind.cpp
+		)
+		add_headers(
+			gl/ggl/x11/glx.h
+		)
+	elseif(APPLE)
+		add_srcs(
+			gl/ggl/mac/aglBind.cpp
+		)
+		add_headers(
+			gl/ggl/mac/agl.h
+		)
+
+	elseif(WIN32) # not currently reachable
+		add_srcs(
+			gl/gfxGLDevice.win.cpp
+			gl/ggl/win32/wglBind.cpp
+		)
+		add_headers(
+			gl/ggl/win32/wgl.h
+		)
+	endif()
 endif()
 
 add_srcs(
@@ -216,5 +234,7 @@ add_headers(
 )
 
 add_includes(
+	${CMAKE_CURRENT_SOURCE_DIR}
 	${CMAKE_SOURCE_DIR}/../lib
+	${CMAKE_SOURCE_DIR}/../lib/squish
 )
