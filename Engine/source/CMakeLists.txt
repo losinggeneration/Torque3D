@@ -31,6 +31,7 @@ option(TORQUE_DEDICATED "Build Torque dedicated server" OFF)
 # TODO option: TORQUE_USE_SFX_NULL
 # TODO option: TORQUE_USE_SFX_OPENAL
 # TODO option: TORQUE_USE_SFX_XAUDIO
+# TODO option: To use dynamic or static linking
 
 # Set some options based on the build type
 if(${TORQUE_FULL_BUILD})
@@ -130,6 +131,18 @@ macro(add_includes)
 	endif()
 endmacro(add_includes)
 
+macro(add_libraries)
+	file(RELATIVE_PATH _relative_path "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
+
+	foreach(_libraries ${ARGN})
+		list(APPEND TORQUE_ENGINE_LIBRARIES "${_libraries}")
+	endforeach()
+
+	if(_relative_path)
+		set(TORQUE_ENGINE_LIBRARIES ${TORQUE_ENGINE_LIBRARIES} PARENT_SCOPE)
+	endif()
+endmacro(add_libraries)
+
 # Not 64 bit safe...
 enable_language(ASM_NASM)
 
@@ -216,13 +229,16 @@ include_directories(
 	${TORQUE_ENGINE_INCLUDES}
 )
 
-add_library(${TORQUE_BUILD}_engine STATIC ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 
 if(${TORQUE_DEDICATED})
 	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp)
+
+	add_library(${TORQUE_BUILD}_engine STATIC ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 else()
 	file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/lib.cpp)
 
+	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp)
+	add_library(${TORQUE_BUILD}_engine SHARED ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 endif()
 
 target_link_libraries(${TORQUE_BUILD_TARGET}
@@ -236,4 +252,6 @@ target_link_libraries(${TORQUE_BUILD_TARGET}
 	z
 	vorbisfile
 	${SDL_LIBRARY}
+# TODO: Check if this needs to happen at the shared library level instead of the main executable target level
+	${TORQUE_ENGINE_LIBRARIES}
 )
