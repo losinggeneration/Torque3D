@@ -60,6 +60,6 @@ else()
 	)
 
 	add_libraries(
-		${FREETYPE_LIBS}
+		${FREETYPE_LIBRARY}
 	)
 endif()

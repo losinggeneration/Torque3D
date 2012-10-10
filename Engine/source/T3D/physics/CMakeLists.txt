@@ -46,7 +46,7 @@ if(${TORQUE_PHYSICS_BULLET})
 		bullet/btWorld.h
 	)
 
-	include_directories(${CMAKE_SOURCE_DIR}/../lib/bullet/src)
+	add_includes(${CMAKE_SOURCE_DIR}/../lib/bullet/src)
 elseif(${TORQUE_PHYSICS_PHYSX})
 	add_srcs(
 		physx/pxBody.cpp
