@@ -24,8 +24,13 @@ CMAKE_DEPENDENT_OPTION(TORQUE_USE_GLSL "Use GLSL as the default shader language"
 CMAKE_DEPENDENT_OPTION(TORQUE_USE_HLSL "Use HLSL as the default shader language" OFF
 	"NOT TORQUE_USE_GLSL" OFF)
 
+# Select the defalt gameBase to use
+CMAKE_DEPENDENT_OPTION(TORQUE_GAMEBASE_STD "Use gameBase/std" OFF
+	"NOT TORQUE_GAMEBASE_HIFI" OFF)
+CMAKE_DEPENDENT_OPTION(TORQUE_GAMEBASE_HIFI "Use gameBase/hifi" OFF
+	"NOT TORQUE_GAMEBASE_STD" OFF)
+
 option(TORQUE_DEDICATED "Build Torque dedicated server" OFF)
-# TODO Option for T3D/gameBase/ std or hifi
 # TODO option: TORQUE_USE_SFX_DSOUND
 # TODO option: TORQUE_USE_SFX_FMOD
 # TODO option: TORQUE_USE_SFX_NULL
@@ -235,8 +240,6 @@ if(${TORQUE_DEDICATED})
 
 	add_library(${TORQUE_BUILD}_engine STATIC ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 else()
-	file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/lib.cpp)
-
 	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp)
 	add_library(${TORQUE_BUILD}_engine SHARED ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 endif()
