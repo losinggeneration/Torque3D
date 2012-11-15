@@ -18,9 +18,6 @@ add_srcs(
 	containerQuery.cpp
 	convexShape.cpp
 	debris.cpp
-	examples/renderShapeExample.cpp
-	examples/renderObjectExample.cpp
-	examples/renderMeshExample.cpp
 	gameFunctions.cpp
 	gameTSCtrl.cpp
 	groundPlane.cpp
@@ -66,9 +63,6 @@ add_headers(
 	containerQuery.h
 	convexShape.h
 	debris.h
-	examples/renderShapeExample.h
-	examples/renderObjectExample.h
-	examples/renderMeshExample.h
 	gameFunctions.h
 	gameTSCtrl.h
 	groundPlane.h

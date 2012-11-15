@@ -58,15 +58,6 @@ ELSE (WIN32)
   INCLUDE_DIRECTORIES(/usr/include /usr/local/include ${GLUT_INCLUDE_DIR}) 
 ENDIF (WIN32)
 
-
-OPTION(BUILD_DEMOS "Set when you want to build the demos" ON)
-IF(BUILD_DEMOS)
-  SUBDIRS(Demos)
-ENDIF(BUILD_DEMOS)
-
-OPTION(BUILD_EXTRAS "Set when you want to build the extras" ON)
-IF(BUILD_EXTRAS)
-  SUBDIRS(Extras)
-ENDIF(BUILD_EXTRAS)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
 
 SUBDIRS(src)

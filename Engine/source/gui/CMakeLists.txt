@@ -12,5 +12,5 @@ add_subdirectory(worldEditor)
 
 # Hack... Otherwise the add_src & add_headers macros don't properly get
 # propagated up to the parent scope
-file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/lib.cpp)
+file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/lib.cpp "//\n")
 add_srcs(lib.cpp)

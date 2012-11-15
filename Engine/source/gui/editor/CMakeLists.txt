@@ -1,3 +1,5 @@
+add_subdirectory(inspector)
+
 add_srcs(
 	editorFunctions.cpp
 	guiDebugger.cpp
@@ -38,4 +40,3 @@ add_includes(
 	${CMAKE_SOURCE_DIR}/../lib/collada/include/1.4
 )
 
-add_subdirectory(inspector)
