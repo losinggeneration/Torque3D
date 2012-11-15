@@ -4,33 +4,30 @@ cmake_minimum_required(VERSION 2.8)
 # Treat link_directories as relative to CMAKE_CURRENT_SOURCE_DIR
 cmake_policy(SET CMP0015 NEW)
 
-include(CMakeDependentOption)
-# We can only choose one build type
-CMAKE_DEPENDENT_OPTION(TORQUE_FULL_BUILD "Set the Torque3D to the Full build" OFF
-	"NOT TORQUE_FULL_PHYSX_BUILD; NOT TORQUE_EMPTY_BUILD; NOT TORQUE_EMPTY_PHYSX_BUILD" OFF)
-
-CMAKE_DEPENDENT_OPTION(TORQUE_FULL_PHYSX_BUILD "Set the Torque3D to the Full PhysX build" OFF
-	"NOT TORQUE_FULL_BUILD; NOT TORQUE_EMPTY_BUILD; NOT TORQUE_EMPTY_PHYSX_BUILD" OFF)
-
-CMAKE_DEPENDENT_OPTION(TORQUE_EMPTY_BUILD "Set the Torque3D to the Empty build" OFF
-	"NOT TORQUE_FULL_BUILD; NOT TORQUE_FULL_PHYSX_BUILD; NOT TORQUE_EMPTY_PHYSX_BUILD" OFF)
-
-CMAKE_DEPENDENT_OPTION(TORQUE_EMPTY_PHYSX_BUILD "Set the Torque3D to the Empty PhysX build" OFF
-	"NOT TORQUE_FULL_BUILD; NOT TORQUE_FULL_PHYSX_BUILD; NOT TORQUE_EMPTY_BUILD" OFF)
+# Select the defalt physics engine to use
+option(TORQUE_PHYSICS_BULLET "Build Torque with Bullet for it's physics" ON)
+option(TORQUE_PHYSICS_PHYSX "Build Torque with PhysX for it's physics" OFF)
+if(TORQUE_PHYSICS_BULLET AND TORQUE_PHYSICS_PHYSX)
+	message(FATAL_ERROR "Only one physics option can be chosen")
+endif()
 
 # Select the defalt shader language to use
-CMAKE_DEPENDENT_OPTION(TORQUE_USE_GLSL "Use GLSL as the default shader language" OFF
-	"NOT TORQUE_USE_HLSL" OFF)
-CMAKE_DEPENDENT_OPTION(TORQUE_USE_HLSL "Use HLSL as the default shader language" OFF
-	"NOT TORQUE_USE_GLSL" OFF)
+option(TORQUE_USE_GLSL "Use GLSL as the default shader language" ON)
+option(TORQUE_USE_HLSL "Use HLSL as the default shader language" OFF)
+if(TORQUE_USE_GLSL AND TORQUE_USE_HLSL)
+	message(FATAL_ERROR "Only one shader language option can be chosen")
+endif()
 
 # Select the defalt gameBase to use
-CMAKE_DEPENDENT_OPTION(TORQUE_GAMEBASE_STD "Use gameBase/std" OFF
-	"NOT TORQUE_GAMEBASE_HIFI" OFF)
-CMAKE_DEPENDENT_OPTION(TORQUE_GAMEBASE_HIFI "Use gameBase/hifi" OFF
-	"NOT TORQUE_GAMEBASE_STD" OFF)
+option(TORQUE_GAMEBASE_STD "Use gameBase/std" ON)
+option(TORQUE_GAMEBASE_HIFI "Use gameBase/hifi" OFF)
+if(TORQUE_GAMEBASE_STD AND TORQUE_GAMEBASE_HIFI)
+	message(FATAL_ERROR "Only one gamebase option can be chosen")
+endif()
 
 option(TORQUE_DEDICATED "Build Torque dedicated server" OFF)
+set(TORQUE_BUILD "Full" CACHE STRING "The Application's name")
+
 # TODO option: TORQUE_USE_SFX_DSOUND
 # TODO option: TORQUE_USE_SFX_FMOD
 # TODO option: TORQUE_USE_SFX_NULL
@@ -38,28 +35,11 @@ option(TORQUE_DEDICATED "Build Torque dedicated server" OFF)
 # TODO option: TORQUE_USE_SFX_XAUDIO
 # TODO option: To use dynamic or static linking
 
-# Set some options based on the build type
-if(${TORQUE_FULL_BUILD})
-	set(TORQUE_BUILD "Full")
-	set(TORQUE_PHYSICS_BULLET 1)
-elseif(${TORQUE_FULL_PHYSX_BUILD})
-	set(TORQUE_BUILD "Full_PhysX")
-	set(TORQUE_PHYSICS_PHYSX 1)
-elseif(${TORQUE_EMPTY_BUILD})
-	set(TORQUE_BUILD "Empty")
-	set(TORQUE_PHYSICS_BULLET 1)
-elseif(${TORQUE_EMPTY_PHYSX_BUILD})
-	set(TORQUE_BUILD "Empty_PhysX")
-	set(TORQUE_PHYSICS_PHYSX 1)
-else()
-	message(FATAL_ERROR "No build selected")
-endif(${TORQUE_FULL_BUILD})
-
 if(${TORQUE_DEDICATED})
 	add_definitions(-DTORQUE_DEDICATED)
 	# We want to unset any extra physics
-	set(TORQUE_PHYSICS_BULLET 0)
-	set(TORQUE_PHYSICS_PHYSX 0)
+	unset(TORQUE_PHYSICS_BULLET)
+	unset(TORQUE_PHYSICS_PHYSX)
 	set(TORQUE_BUILD_TARGET ${TORQUE_BUILD})
 else()
 	set(TORQUE_BUILD_TARGET ${TORQUE_BULID}_Shared)
@@ -168,9 +148,13 @@ add_definitions(
 	-DPCRE_STATIC
 )
 
-
 if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mmmx -msse")
+	if(${CMAKE_SIZEOF_VOID_P} EQUAL 8)
+		add_definitions(-Di386)
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32")
+		set(LINK_FLAGS "-m32")
+	endif()
 endif()
 
 if(UNIX)
@@ -223,12 +207,25 @@ add_subdirectory(unit)
 add_subdirectory(util)
 add_subdirectory(windowManager)
 
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/bullet ${CMAKE_CURRENT_BINARY_DIR}/bullet)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/collada ${CMAKE_CURRENT_BINARY_DIR}/collada)
-add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/opcode ${CMAKE_CURRENT_BINARY_DIR}/opcode)
-add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/pcre ${CMAKE_CURRENT_BINARY_DIR}/pcre)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/convexDecomp ${CMAKE_CURRENT_BINARY_DIR}/convexDecomp)
+#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libogg ${CMAKE_CURRENT_BINARY_DIR}/libogg)
+#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libtheora ${CMAKE_CURRENT_BINARY_DIR}/libtheora)
+#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libvorbis ${CMAKE_CURRENT_BINARY_DIR}/libvorbis)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/ljpeg ${CMAKE_CURRENT_BINARY_DIR}/ljpeg)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/lmng ${CMAKE_CURRENT_BINARY_DIR}/lmng)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/lpng ${CMAKE_CURRENT_BINARY_DIR}/lpng)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/lungif ${CMAKE_CURRENT_BINARY_DIR}/lungif)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/opcode ${CMAKE_CURRENT_BINARY_DIR}/opcode)
+#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/openal ${CMAKE_CURRENT_BINARY_DIR}/openal)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/pcre ${CMAKE_CURRENT_BINARY_DIR}/pcre)
+#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/sdl ${CMAKE_CURRENT_BINARY_DIR}/sdl)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/squish ${CMAKE_CURRENT_BINARY_DIR}/squish)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/tinyxml ${CMAKE_CURRENT_BINARY_DIR}/tinyxml)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/zlib ${CMAKE_CURRENT_BINARY_DIR}/zlib)
+
+set(BULLET_TARGETS BulletDynamics BulletSoftBody BulletCollision LinearMath)
 
 include_directories(
 	${TORQUE_ENGINE_INCLUDES}
@@ -236,24 +233,33 @@ include_directories(
 
 
 if(${TORQUE_DEDICATED})
-	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp)
-
-	add_library(${TORQUE_BUILD}_engine STATIC ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
+	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 else()
 	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp)
 	add_library(${TORQUE_BUILD}_engine SHARED ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
+	set(TORQUE_ENGINE ${TORQUE_BUILD}_engine)
 endif()
 
 target_link_libraries(${TORQUE_BUILD_TARGET}
-	${TORQUE_BUILD}_engine
+	${TORQUE_ENGINE}
+	${BULLET_TARGETS}
 	collada
+	convexdecomp
+	rt # for convexDecomp and Linux
 	opcode
 	pcre
+	jpeg
 	png
+	ungif
 	squish
 	tinyxml
 	z
+	ogg
+	vorbis
 	vorbisfile
+	mng
+	theoraenc
+	theoradec
 	${SDL_LIBRARY}
 # TODO: Check if this needs to happen at the shared library level instead of the main executable target level
 	${TORQUE_ENGINE_LIBRARIES}

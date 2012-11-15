@@ -1,0 +1,71 @@
+set(LIBVORBIS_SRCS
+	lib/floor0.c
+	lib/lookup.c
+	lib/sharedbook.c
+	lib/mapping0.c
+	lib/info.c
+	lib/vorbisfile.c
+	lib/bitrate.c
+	lib/vorbisenc.c
+	lib/res0.c
+	lib/smallft.c
+	lib/psy.c
+	lib/mdct.c
+	lib/window.c
+	lib/envelope.c
+	lib/floor1.c
+	lib/block.c
+	lib/codebook.c
+	lib/synthesis.c
+	lib/lpc.c
+	lib/registry.c
+	lib/lsp.c
+	lib/analysis.c
+)
+
+set(LIBVORBIS_HEADERS
+	include/vorbis/codec.h
+	include/vorbis/vorbisfile.h
+	include/vorbis/vorbisenc.h
+	lib/lsp.h
+	lib/lookup.h
+	lib/highlevel.h
+	lib/bitrate.h
+	lib/window.h
+	lib/lpc.h
+	lib/misc.h
+	lib/books/floor/floor_books.h
+	lib/books/coupled/res_books_stereo.h
+	lib/books/uncoupled/res_books_uncoupled.h
+	lib/lookup_data.h
+	lib/registry.h
+	lib/scales.h
+	lib/psy.h
+	lib/codebook.h
+	lib/smallft.h
+	lib/masking.h
+	lib/mdct.h
+	lib/envelope.h
+	lib/modes/setup_8.h
+	lib/modes/psych_16.h
+	lib/modes/setup_16.h
+	lib/modes/setup_44u.h
+	lib/modes/setup_44.h
+	lib/modes/residue_16.h
+	lib/modes/floor_all.h
+	lib/modes/psych_8.h
+	lib/modes/residue_44u.h
+	lib/modes/residue_44.h
+	lib/modes/setup_X.h
+	lib/modes/psych_44.h
+	lib/modes/setup_32.h
+	lib/modes/residue_8.h
+	lib/modes/setup_22.h
+	lib/modes/setup_11.h
+	lib/modes/psych_11.h
+	lib/backends.h
+	lib/os.h
+	lib/codec_internal.h
+)
+
+add_library(vorbis STATIC ${LIBVORBIS_SRCS} ${LIBVORBIS_HEADERS})
