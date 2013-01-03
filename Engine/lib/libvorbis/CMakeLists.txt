@@ -68,4 +68,6 @@ set(LIBVORBIS_HEADERS
 	lib/codec_internal.h
 )
 
+include_directories(include lib)
+
 add_library(vorbis STATIC ${LIBVORBIS_SRCS} ${LIBVORBIS_HEADERS})

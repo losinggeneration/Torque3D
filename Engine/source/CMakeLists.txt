@@ -210,9 +210,8 @@ add_subdirectory(windowManager)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/bullet ${CMAKE_CURRENT_BINARY_DIR}/bullet)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/collada ${CMAKE_CURRENT_BINARY_DIR}/collada)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/convexDecomp ${CMAKE_CURRENT_BINARY_DIR}/convexDecomp)
-#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libogg ${CMAKE_CURRENT_BINARY_DIR}/libogg)
-#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libtheora ${CMAKE_CURRENT_BINARY_DIR}/libtheora)
-#add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libvorbis ${CMAKE_CURRENT_BINARY_DIR}/libvorbis)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libogg ${CMAKE_CURRENT_BINARY_DIR}/libogg)
+add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libvorbis ${CMAKE_CURRENT_BINARY_DIR}/libvorbis)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/ljpeg ${CMAKE_CURRENT_BINARY_DIR}/ljpeg)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/lmng ${CMAKE_CURRENT_BINARY_DIR}/lmng)
 add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/lpng ${CMAKE_CURRENT_BINARY_DIR}/lpng)
@@ -235,9 +234,15 @@ include_directories(
 if(${TORQUE_DEDICATED})
 	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 else()
+	add_subdirectory(${CMAKE_SOURCE_DIR}/../lib/libtheora ${CMAKE_CURRENT_BINARY_DIR}/libtheora)
+
 	add_executable(${TORQUE_BUILD_TARGET} main/main.cpp)
 	add_library(${TORQUE_BUILD}_engine SHARED ${TORQUE_ENGINE_SRCS} ${TORQUE_ENGINE_HEADERS})
 	set(TORQUE_ENGINE ${TORQUE_BUILD}_engine)
+
+	target_link_libraries(${TORQUE_BUILD_TARGET}
+		theora
+	)
 endif()
 
 target_link_libraries(${TORQUE_BUILD_TARGET}
@@ -254,12 +259,9 @@ target_link_libraries(${TORQUE_BUILD_TARGET}
 	squish
 	tinyxml
 	z
-	ogg
 	vorbis
-	vorbisfile
+	ogg
 	mng
-	theoraenc
-	theoradec
 	${SDL_LIBRARY}
 # TODO: Check if this needs to happen at the shared library level instead of the main executable target level
 	${TORQUE_ENGINE_LIBRARIES}

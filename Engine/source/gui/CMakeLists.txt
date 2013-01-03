@@ -6,9 +6,12 @@ add_subdirectory(core)
 add_subdirectory(editor)
 add_subdirectory(game)
 add_subdirectory(shiny)
-add_subdirectory(theora)
 add_subdirectory(utility)
 add_subdirectory(worldEditor)
+
+if(NOT TORQUE_DEDICATED)
+	add_subdirectory(theora)
+endif()
 
 # Hack... Otherwise the add_src & add_headers macros don't properly get
 # propagated up to the parent scope

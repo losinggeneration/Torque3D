@@ -8,4 +8,6 @@ set(LIBOGG_HEADERS
 	include/ogg/os_types.h
 )
 
+include_directories(include)
+
 add_library(ogg STATIC ${LIBOGG_SRCS} ${LIBOGG_HEADERS})

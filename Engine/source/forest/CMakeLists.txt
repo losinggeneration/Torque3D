@@ -1,3 +1,4 @@
+if(NOT TORQUE_DEDICATED)
 add_srcs(
 	editor/forestBrushElement.cpp
 	editor/forestBrushTool.cpp
@@ -5,6 +6,18 @@ add_srcs(
 	editor/forestSelectionTool.cpp
 	editor/forestTool.cpp
 	editor/forestUndo.cpp
+)
+add_headers(
+	editor/forestBrushElement.h
+	editor/forestBrushTool.h
+	editor/forestEditorCtrl.h
+	editor/forestSelectionTool.h
+	editor/forestTool.h
+	editor/forestUndo.h
+)
+endif()
+
+add_srcs(
 	forest.cpp
 	forestCell.cpp
 	forestCellBatch.cpp
@@ -23,12 +36,6 @@ add_srcs(
 )
 
 add_headers(
-	editor/forestBrushElement.h
-	editor/forestBrushTool.h
-	editor/forestEditorCtrl.h
-	editor/forestSelectionTool.h
-	editor/forestTool.h
-	editor/forestUndo.h
 	forest.h
 	forestCell.h
 	forestCellBatch.h

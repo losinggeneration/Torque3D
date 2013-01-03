@@ -12,9 +12,6 @@ add_srcs(
 	idGenerator.cpp
 	memVolume.cpp
 	module.cpp
-	ogg/oggInputStream.cpp
-	ogg/oggTheoraDecoder.cpp
-	ogg/oggVorbisDecoder.cpp
 	resizeStream.cpp
 	resource.cpp
 	resourceManager.cpp
@@ -91,9 +88,6 @@ add_headers(
 	idGenerator.h
 	memVolume.h
 	module.h
-	ogg/oggInputStream.h
-	ogg/oggTheoraDecoder.h
-	ogg/oggVorbisDecoder.h
 	resizeStream.h
 	resource.h
 	resourceManager.h
@@ -174,3 +168,17 @@ add_headers(
 	virtualMountSystem.h
 	volume.h
 )
+
+if(NOT TORQUE_DEDICATED)
+	add_srcs(
+		ogg/oggInputStream.cpp
+		ogg/oggTheoraDecoder.cpp
+		ogg/oggVorbisDecoder.cpp
+	)
+
+	add_headers(
+		ogg/oggInputStream.h
+		ogg/oggTheoraDecoder.h
+		ogg/oggVorbisDecoder.h
+	)
+endif()

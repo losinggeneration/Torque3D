@@ -32,10 +32,19 @@ set(LIBTHEORA_SRCS
 	lib/dec/decode.c
 	lib/dec/quant.c
 	lib/dec/apiwrapper.c
+)
+
+# TODO: Figure out what actually needs included for MMX
+if(0)
+
+list(APPEND LIBTHEORA_SRCS
 	lib/dec/x86/mmxfrag.c
 	lib/dec/x86/x86state.c
 	lib/dec/x86/mmxidct.c
 	lib/dec/x86/mmxstate.c
+)
+
+list(APPEND LIBTHEORA_SRCS
 	lib/dec/x86_vc/mmxfrag.c
 	lib/dec/x86_vc/x86state.c
 	lib/dec/x86_vc/mmxidct.c
@@ -44,8 +53,7 @@ set(LIBTHEORA_SRCS
 )
 
 if(${CMAKE_SIZEOF_VOID_P} EQUAL 4)
-	set(LIBTHEORA_SRCS
-		${LIBTHEORA_SRCS}
+	list(APPEND LIBTHEORA_SRCS
 		lib/enc/x86_32_vs/dsp_mmx.c
 		lib/enc/x86_32_vs/recon_mmx.c
 		lib/enc/x86_32_vs/fdct_mmx.c
@@ -57,8 +65,7 @@ if(${CMAKE_SIZEOF_VOID_P} EQUAL 4)
 		lib/enc/x86_32/fdct_mmx.c
 	)
 else()
-	set(LIBTHEORA_SRCS
-		${LIBTHEORA_SRCS}
+	list(APPEND LIBTHEORA_SRCS
 		lib/enc/x86_64/dct_decode_mmx.c
 		lib/enc/x86_64/idct_mmx.c
 		lib/enc/x86_64/dsp_mmx.c
@@ -66,6 +73,7 @@ else()
 		lib/enc/x86_64/dsp_mmxext.c
 		lib/enc/x86_64/fdct_mmx.c
 	)
+endif()
 endif()
 
 set(LIBTHEORA_HEADERS
@@ -97,5 +105,7 @@ set(LIBTHEORA_HEADERS
 	lib/dec/x86_vc/x86int.h
 	lib/internal.h
 )
+
+include_directories(include)
 
 add_library(theora STATIC ${LIBTHEORA_SRCS} ${LIBTHEORA_HEADERS})

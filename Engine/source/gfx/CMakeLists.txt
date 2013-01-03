@@ -1,131 +1,3 @@
-
-if(TORQUE_DEDICATED)
-	add_headers(
-		Null/gfxNullDevice.h
-	)
-
-	add_srcs(
-		Null/gfxNullDevice.cpp
-	)
-elseif(WIN32)
-	add_srcs(
-		D3D9/gfxD3D9CardProfiler.cpp
-		D3D9/gfxD3D9Cubemap.cpp
-		D3D9/gfxD3D9Device.cpp
-		D3D9/gfxD3D9Device.regen-states.cpp
-		D3D9/gfxD3D9OcclusionQuery.cpp
-		D3D9/gfxD3D9PrimitiveBuffer.cpp
-		D3D9/gfxD3D9QueryFence.cpp
-		D3D9/gfxD3D9Shader.cpp
-		D3D9/gfxD3D9StateBlock.cpp
-		D3D9/gfxD3D9TextureManager.cpp
-		D3D9/gfxD3D9TextureObject.cpp
-		D3D9/gfxD3D9VertexBuffer.cpp
-		D3D9/pc/gfxD3D9Device.pc.cpp
-		D3D9/pc/gfxD3D9EnumTranslate.pc.cpp
-		D3D9/pc/gfxD3D9PrimitiveBuffer.pc.cpp
-		D3D9/pc/gfxPCD3D9Device.cpp
-		D3D9/pc/gfxPCD3D9Target.cpp
-		D3D9/screenshotD3D9.cpp
-		D3D9/videoCaptureD3D9.cpp
-	)
-
-	add_headers(
-		D3D9/d3dx9Functions.h
-		D3D9/gfxD3D9CardProfiler.h
-		D3D9/gfxD3D9Cubemap.h
-		D3D9/gfxD3D9Device.h
-		D3D9/gfxD3D9EnumTranslate.h
-		D3D9/gfxD3D9OcclusionQuery.h
-		D3D9/gfxD3D9PrimitiveBuffer.h
-		D3D9/gfxD3D9QueryFence.h
-		D3D9/gfxD3D9Shader.h
-		D3D9/gfxD3D9StateBlock.h
-		D3D9/gfxD3D9TextureManager.h
-		D3D9/gfxD3D9TextureObject.h
-		D3D9/gfxD3D9VertexBuffer.h
-		D3D9/pc/gfxPCD3D9Device.h
-		D3D9/pc/gfxPCD3D9Target.h
-		D3D9/screenshotD3D9.h
-		D3D9/videoCaptureD3D9.h
-	)
-else()
-	add_srcs(
-		gl/gfxGLAppleFence.cpp
-		gl/gfxGLCardProfiler.cpp
-		gl/gfxGLCubemap.cpp
-		gl/gfxGLDevice.cpp
-		gl/gfxGLEnumTranslate.cpp
-		gl/gfxGLOcclusionQuery.cpp
-		gl/gfxGLPrimitiveBuffer.cpp
-		gl/gfxGLShader.cpp
-		gl/gfxGLStateBlock.cpp
-		gl/gfxGLTextureManager.cpp
-		gl/gfxGLTextureObject.cpp
-		gl/gfxGLTextureTarget.cpp
-		gl/gfxGLVertexBuffer.cpp
-		gl/gfxGLWindowTarget.cpp
-		gl/ggl/generator/parse.cpp
-		gl/ggl/ggl.cpp
-	)
-
-	add_headers(
-		gl/gfxGLAppleFence.h
-		gl/gfxGLCardProfiler.h
-		gl/gfxGLCubemap.h
-		gl/gfxGLDevice.h
-		gl/gfxGLEnumTranslate.h
-		gl/gfxGLOcclusionQuery.h
-		gl/gfxGLPrimitiveBuffer.h
-		gl/gfxGLShader.h
-		gl/gfxGLStateBlock.h
-		gl/gfxGLTextureManager.h
-		gl/gfxGLTextureObject.h
-		gl/gfxGLTextureTarget.h
-		gl/gfxGLUtils.h
-		gl/gfxGLVertexBuffer.h
-		gl/gfxGLWindowTarget.h
-		gl/ggl/generated/glc.h
-		gl/ggl/generated/glcfn.h
-		gl/ggl/generated/gle.h
-		gl/ggl/generated/glefn.h
-		gl/ggl/generated/glxe.h
-		gl/ggl/generated/glxefn.h
-		gl/ggl/generated/glxfn.h
-		gl/ggl/generated/wgle.h
-		gl/ggl/generated/wglefn.h
-		gl/ggl/generated/wglfn.h
-		gl/ggl/ggl.h
-		gl/ggl/gglConfig.h
-	)
-
-	if(UNIX)
-		add_srcs(
-			gl/ggl/x11/glx.cpp
-			gl/ggl/x11/glxBind.cpp
-		)
-		add_headers(
-			gl/ggl/x11/glx.h
-		)
-	elseif(APPLE)
-		add_srcs(
-			gl/ggl/mac/aglBind.cpp
-		)
-		add_headers(
-			gl/ggl/mac/agl.h
-		)
-
-	elseif(WIN32) # not currently reachable
-		add_srcs(
-			gl/gfxGLDevice.win.cpp
-			gl/ggl/win32/wglBind.cpp
-		)
-		add_headers(
-			gl/ggl/win32/wgl.h
-		)
-	endif()
-endif()
-
 add_srcs(
 	bitmap/bitmapUtils.cpp
 	bitmap/ddsLoader.cpp
@@ -176,10 +48,7 @@ add_srcs(
 	util/gfxFrustumSaver.cpp
 	util/screenspace.cpp
 	util/triListOpt.cpp
-	video/theoraTexture.cpp
 	video/videoCapture.cpp
-	video/videoEncoderPNG.cpp
-	video/videoEncoderTheora.cpp
 )
 
 add_headers(
@@ -229,9 +98,150 @@ add_headers(
 	util/gfxFrustumSaver.h
 	util/screenspace.h
 	util/triListOpt.h
-	video/theoraTexture.h
 	video/videoCapture.h
 )
+
+
+if(TORQUE_DEDICATED)
+	add_headers(
+		Null/gfxNullDevice.h
+	)
+
+	add_srcs(
+		Null/gfxNullDevice.cpp
+	)
+else(TORQUE_DEDICATED)
+	add_srcs(
+		video/theoraTexture.cpp
+		video/videoEncoderPNG.cpp
+		video/videoEncoderTheora.cpp
+	)
+
+	add_headers(
+		video/theoraTexture.h
+	)
+
+	if(WIN32)
+		add_srcs(
+			D3D9/gfxD3D9CardProfiler.cpp
+			D3D9/gfxD3D9Cubemap.cpp
+			D3D9/gfxD3D9Device.cpp
+			D3D9/gfxD3D9Device.regen-states.cpp
+			D3D9/gfxD3D9OcclusionQuery.cpp
+			D3D9/gfxD3D9PrimitiveBuffer.cpp
+			D3D9/gfxD3D9QueryFence.cpp
+			D3D9/gfxD3D9Shader.cpp
+			D3D9/gfxD3D9StateBlock.cpp
+			D3D9/gfxD3D9TextureManager.cpp
+			D3D9/gfxD3D9TextureObject.cpp
+			D3D9/gfxD3D9VertexBuffer.cpp
+			D3D9/pc/gfxD3D9Device.pc.cpp
+			D3D9/pc/gfxD3D9EnumTranslate.pc.cpp
+			D3D9/pc/gfxD3D9PrimitiveBuffer.pc.cpp
+			D3D9/pc/gfxPCD3D9Device.cpp
+			D3D9/pc/gfxPCD3D9Target.cpp
+			D3D9/screenshotD3D9.cpp
+			D3D9/videoCaptureD3D9.cpp
+		)
+
+		add_headers(
+			D3D9/d3dx9Functions.h
+			D3D9/gfxD3D9CardProfiler.h
+			D3D9/gfxD3D9Cubemap.h
+			D3D9/gfxD3D9Device.h
+			D3D9/gfxD3D9EnumTranslate.h
+			D3D9/gfxD3D9OcclusionQuery.h
+			D3D9/gfxD3D9PrimitiveBuffer.h
+			D3D9/gfxD3D9QueryFence.h
+			D3D9/gfxD3D9Shader.h
+			D3D9/gfxD3D9StateBlock.h
+			D3D9/gfxD3D9TextureManager.h
+			D3D9/gfxD3D9TextureObject.h
+			D3D9/gfxD3D9VertexBuffer.h
+			D3D9/pc/gfxPCD3D9Device.h
+			D3D9/pc/gfxPCD3D9Target.h
+			D3D9/screenshotD3D9.h
+			D3D9/videoCaptureD3D9.h
+		)
+	else(WIN32)
+		add_srcs(
+			gl/gfxGLAppleFence.cpp
+			gl/gfxGLCardProfiler.cpp
+			gl/gfxGLCubemap.cpp
+			gl/gfxGLDevice.cpp
+			gl/gfxGLEnumTranslate.cpp
+			gl/gfxGLOcclusionQuery.cpp
+			gl/gfxGLPrimitiveBuffer.cpp
+			gl/gfxGLShader.cpp
+			gl/gfxGLStateBlock.cpp
+			gl/gfxGLTextureManager.cpp
+			gl/gfxGLTextureObject.cpp
+			gl/gfxGLTextureTarget.cpp
+			gl/gfxGLVertexBuffer.cpp
+			gl/gfxGLWindowTarget.cpp
+			gl/ggl/generator/parse.cpp
+			gl/ggl/ggl.cpp
+		)
+
+		add_headers(
+			gl/gfxGLAppleFence.h
+			gl/gfxGLCardProfiler.h
+			gl/gfxGLCubemap.h
+			gl/gfxGLDevice.h
+			gl/gfxGLEnumTranslate.h
+			gl/gfxGLOcclusionQuery.h
+			gl/gfxGLPrimitiveBuffer.h
+			gl/gfxGLShader.h
+			gl/gfxGLStateBlock.h
+			gl/gfxGLTextureManager.h
+			gl/gfxGLTextureObject.h
+			gl/gfxGLTextureTarget.h
+			gl/gfxGLUtils.h
+			gl/gfxGLVertexBuffer.h
+			gl/gfxGLWindowTarget.h
+			gl/ggl/generated/glc.h
+			gl/ggl/generated/glcfn.h
+			gl/ggl/generated/gle.h
+			gl/ggl/generated/glefn.h
+			gl/ggl/generated/glxe.h
+			gl/ggl/generated/glxefn.h
+			gl/ggl/generated/glxfn.h
+			gl/ggl/generated/wgle.h
+			gl/ggl/generated/wglefn.h
+			gl/ggl/generated/wglfn.h
+			gl/ggl/ggl.h
+			gl/ggl/gglConfig.h
+		)
+
+		if(UNIX)
+			add_srcs(
+				gl/ggl/x11/glx.cpp
+				gl/ggl/x11/glxBind.cpp
+			)
+			add_headers(
+				gl/ggl/x11/glx.h
+			)
+		elseif(APPLE)
+			add_srcs(
+				gl/ggl/mac/aglBind.cpp
+			)
+			add_headers(
+				gl/ggl/mac/agl.h
+			)
+
+		elseif(WIN32) # not currently reachable
+			add_srcs(
+				gl/gfxGLDevice.win.cpp
+				gl/ggl/win32/wglBind.cpp
+			)
+			add_headers(
+				gl/ggl/win32/wgl.h
+			)
+		endif(UNIX)
+	endif(WIN32)
+endif(TORQUE_DEDICATED)
+
+
 
 add_includes(
 	${CMAKE_CURRENT_SOURCE_DIR}
